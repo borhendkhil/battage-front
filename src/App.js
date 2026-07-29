@@ -65,12 +65,16 @@ function Login() {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch(API_URL + '/login', {
+      const url = API_URL + '/login';
+      console.log('[login] fetching:', url, { username, password });
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
+      console.log('[login] response status:', res.status);
       const user = await res.json();
+      console.log('[login] response body:', user);
       if (user.success) {
         localStorage.setItem('username', username);
         if (user.role === 'admin') {
