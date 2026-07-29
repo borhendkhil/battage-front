@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from "./config";
 import './App.css';
 import bg from './assets/bg-img.jpg';
 import UtilisateurSection from './UtilisateurSection';
@@ -9,9 +10,6 @@ export default function AcceuilSupAdmin() {
   const [showEditUserModal, setShowEditUserModal] = useState(false);
   const [newUser, setNewUser] = useState({ username: '', password: '', role: '' });
   const [editUser, setEditUser] = useState({ id: '', username: '', password: '', role: '' });
-
-  const API_URL = API_URL;
-
   const roleStats = utilisateurs.reduce((acc, user) => {
     acc[user.role] = (acc[user.role] || 0) + 1;
     return acc;

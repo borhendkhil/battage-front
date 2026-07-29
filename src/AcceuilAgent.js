@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from "./config";
 import RapportJournalierSection from './RapportJournalierSection';
 import ListeRapportsSection from './ListeRapportsSection';
 import NavbarAgent from './NavbarAgent';

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_URL } from "./config";
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
 import bg from './assets/bg-img.jpg';

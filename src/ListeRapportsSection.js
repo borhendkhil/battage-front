@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_URL } from "./config";
 
 // À compléter : affichage de la liste des rapports journaliers de l'agent connecté
 export default function ListeRapportsSection() {

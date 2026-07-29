@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_URL } from "./config";
 
 export default function AffectationAgentSection() {
   const [agents, setAgents] = useState([]);
@@ -17,8 +18,6 @@ export default function AffectationAgentSection() {
   const [showAddUserModal, setShowAddUserModal] = useState(false);
   const [newUser, setNewUser] = useState({ username: '', password: '', role: 'agent-saisie' });
   const [userMessage, setUserMessage] = useState('');
-  const API_URL = process.env.REACT_APP_API_URL;
-
   useEffect(() => {
     fetch(API_URL + '/utilisateurs')
       .then(r => r.json())

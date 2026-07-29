@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_URL } from "./config";
 
 // Helper pour obtenir la date locale au format YYYY-MM-DD
 const getTodayLocal = () => {
