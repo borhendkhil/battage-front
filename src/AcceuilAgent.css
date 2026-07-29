@@ -1,0 +1,121 @@
+.background_wrapper {
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* Optionally add a slight overlay for readability */
+  /* background-color: rgba(255,255,255,0.1); */
+}
+
+
+@media (max-width: 700px) {
+  .background_wrapper {
+    padding: 0 2vw 40px 2vw;
+    min-height: 100vh;
+    margin-bottom: 0;
+  }
+}
+
+
+
+@media (max-width: 700px) {
+  .agent-container {
+    width: 80%;
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
+    margin: 20px auto;
+  }
+}
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+  text-shadow: 1px 2px 3px #000;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.agent-intro {
+  margin-bottom: 20px;
+}
+
+.agent-intro p {
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.agent-dashboard .dashboard-cards {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.agent-dashboard .stat-card {
+  min-height: 120px;
+}
+
+@media (max-width: 700px) {
+  h2 {
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+}
+
+
+.agent-container {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: #41404026 !important;
+    border: 2px solid #e6e6e6;
+    border-radius: 1.5rem;
+    color: hsla(0, 0%, 100%, .897);
+    display: block;
+    margin: 50px auto;
+    padding: 2.5rem 2rem 3.5rem;
+    position: relative;
+    text-align: right;
+    width: 80%;
+    z-index: 999;
+}
+.agent-container .form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: .4rem;
+    margin-top: 14px !important;
+    color: rgb(255, 255, 255) !important;
+}
+.agent-container .login__input {
+  padding-block: .8rem;
+  z-index: 1;
+  color: rgb(58, 47, 37) !important;
+  font-size: 1.05rem;
+  text-align: center;
+  width: 100%;
+  background: rgb(249, 246, 242) !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(209, 191, 163) !important;
+  border-image: initial;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  transition: border 0.2s;
+}
+
+@media (max-width: 700px) {
+  .agent-container {
+    width: 85%;
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
+    margin: 20px auto;
+  }
+}
+
+

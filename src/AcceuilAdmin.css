@@ -1,0 +1,676 @@
+/* ============================================================
+   الحصاد — Design System
+   Palette dérivée : blé clair #FFEB97 → terre #5B3714
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
+
+:root {
+  --wheat-light: #ffeb97;
+  --wheat-mid: #e3be6e;
+  --amber: #c9954c;
+  --bronze: #8c5e33;
+  --soil: #5b3714;
+  --espresso: #2c1810;
+  --cream: #fff7e6;
+  --ink: #3a2313;
+  --ink-soft: #6f4a34;
+
+  --shadow-soil: 0 30px 70px rgba(44, 24, 16, 0.35);
+  --radius-lg: 1.75rem;
+  --radius-md: 1.125rem;
+  --radius-pill: 999px;
+
+  --font-display: 'Amiri', 'Traditional Arabic', serif;
+  --font-body: 'Tajawal', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+}
+
+/* ============================================================
+   Page
+   ============================================================ */
+
+.login-page {
+  direction: rtl;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 235, 151, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(140, 94, 51, 0.4), transparent 50%),
+    linear-gradient(160deg, var(--soil) 0%, var(--espresso) 65%, #1c0f09 100%);
+  background-attachment: fixed;
+}
+
+.login-shell {
+  width: 100%;
+  max-width: 74rem;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 235, 151, 0.14);
+  background: rgba(255, 247, 230, 0.03);
+  box-shadow: var(--shadow-soil);
+  backdrop-filter: blur(18px);
+  min-height: 34rem;
+}
+
+/* ============================================================
+   Panneau visuel — l'épi de blé (signature)
+   ============================================================ */
+
+.login-visual {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--wheat-light) 0%, var(--wheat-mid) 45%, var(--amber) 78%, var(--bronze) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2.5rem;
+}
+
+.login-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(44, 24, 16, 0.35) 0%, transparent 55%);
+  z-index: 1;
+}
+
+.login-visual__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+.wheat-sheaf {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wheat-sheaf svg {
+  width: min(60%, 15rem);
+  height: auto;
+  filter: drop-shadow(0 18px 22px rgba(44, 24, 16, 0.35));
+}
+
+.wheat-stalk {
+  transform-origin: bottom center;
+  animation: sway 5.5s ease-in-out infinite;
+}
+
+.wheat-stalk:nth-child(2) { animation-delay: -1.2s; }
+.wheat-stalk:nth-child(3) { animation-delay: -2.6s; }
+.wheat-stalk:nth-child(4) { animation-delay: -0.6s; }
+.wheat-stalk:nth-child(5) { animation-delay: -3.4s; }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+.login-visual__caption {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.login-visual__caption p {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--espresso);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.login-visual__caption span {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(44, 24, 16, 0.7);
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   Panneau formulaire
+   ============================================================ */
+
+.login-form-panel {
+  background: var(--cream);
+  padding: 3.25rem 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.login-form-wrap {
+  width: 100%;
+  max-width: 26rem;
+  margin: 0 auto;
+}
+
+.login-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  color: var(--bronze);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.login-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--soil);
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.login-subtitle {
+  font-size: 0.92rem;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  margin: 0 0 2.25rem;
+}
+
+.login-field {
+  margin-bottom: 1.5rem;
+}
+
+.login-field label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+
+.login-input-wrap {
+  position: relative;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(140, 94, 51, 0.3);
+  background: #ffffff;
+  padding: 0.15rem 1.1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-input-wrap:focus-within {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 4px rgba(201, 149, 76, 0.16);
+}
+
+.login-input-wrap input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0.85rem 1.9rem 0.85rem 0.25rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.login-input-wrap input::placeholder {
+  color: rgba(111, 74, 52, 0.45);
+}
+
+.login-input-icon {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--bronze);
+  opacity: 0.75;
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.login-submit {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--espresso);
+  background: linear-gradient(90deg, var(--wheat-light), var(--amber));
+  box-shadow: 0 14px 28px rgba(201, 149, 76, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.login-submit:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 18px 34px rgba(201, 149, 76, 0.45);
+  transform: translateY(-1px);
+}
+
+.login-submit:active {
+  transform: translateY(0);
+}
+
+.login-submit:focus-visible,
+.login-input-wrap input:focus-visible {
+  outline: 2px solid var(--soil);
+  outline-offset: 2px;
+}
+
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.4rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.login-links span {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.login-links span:hover {
+  color: var(--soil);
+}
+
+.login-error {
+  margin-top: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(178, 47, 47, 0.25);
+  background: rgba(178, 47, 47, 0.08);
+  color: #7a1f1f;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .login-visual {
+    min-height: 12rem;
+    padding: 1.75rem;
+  }
+
+  .wheat-sheaf svg {
+    width: 8rem;
+  }
+
+  .login-form-panel {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .login-title {
+    font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheat-stalk {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Dashboard — espace admin
+   ============================================================ */
+
+.background_wrapper {
+  position: relative;
+  direction: rtl;
+}
+
+.background_wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(44, 24, 16, 0.88) 0%, rgba(91, 55, 20, 0.82) 45%, rgba(44, 24, 16, 0.92) 100%);
+  z-index: 0;
+}
+
+.contenu {
+  position: relative;
+  z-index: 1;
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* --- Navbar --- */
+
+.navbar,
+nav.navbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  margin: 0 -1.5rem 2rem;
+  background: rgba(44, 24, 16, 0.55);
+  border-bottom: 1px solid rgba(255, 235, 151, 0.16);
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+}
+
+.navbar a,
+.nav-link {
+  color: var(--wheat-light);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-pill);
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+
+.navbar a:hover,
+.nav-link:hover {
+  background: rgba(255, 235, 151, 0.12);
+}
+
+.navbar a.active,
+.nav-link.active {
+  background: linear-gradient(90deg, var(--wheat-light), var(--amber));
+  color: var(--espresso);
+  font-weight: 700;
+}
+
+/* --- Bannière de bienvenue --- */
+
+.bienvenue {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 0 0 2rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--wheat-light) 0%, var(--wheat-mid) 50%, var(--amber) 100%);
+  box-shadow: var(--shadow-soil);
+}
+
+.bienvenue span {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--espresso);
+}
+
+/* --- Cartes de statistiques --- */
+
+.dashboard-panel {
+  margin-bottom: 2rem;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.4rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 247, 230, 0.94);
+  border: 1px solid rgba(255, 235, 151, 0.4);
+  box-shadow: 0 14px 30px rgba(44, 24, 16, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(44, 24, 16, 0.32);
+}
+
+.stat-card span {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.stat-card strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--soil);
+  font-weight: 700;
+}
+
+/* --- Modals --- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(44, 24, 16, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  width: 100%;
+  max-width: 28rem;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 2rem 2.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  box-shadow: var(--shadow-soil);
+  border: 1px solid rgba(255, 235, 151, 0.4);
+}
+
+.modal h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--soil);
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+/* --- Formulaires génériques (modals + sections) --- */
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.login__input {
+  width: 100%;
+  border: 1.5px solid rgba(140, 94, 51, 0.3);
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  padding: 0.75rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.login__input:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 4px rgba(201, 149, 76, 0.16);
+}
+
+.form-group input:disabled,
+.login__input:disabled {
+  background: rgba(140, 94, 51, 0.08);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+/* --- Boutons d'action --- */
+
+.add-btn,
+.edit-btn,
+.delete-btn {
+  flex: 1;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.add-btn {
+  color: var(--espresso);
+  background: linear-gradient(90deg, var(--wheat-light), var(--amber));
+  box-shadow: 0 10px 20px rgba(201, 149, 76, 0.32);
+}
+
+.edit-btn {
+  color: var(--soil);
+  background: rgba(201, 149, 76, 0.14);
+  border: 1.5px solid rgba(140, 94, 51, 0.35);
+}
+
+.delete-btn {
+  color: #7a1f1f;
+  background: rgba(178, 47, 47, 0.08);
+  border: 1.5px solid rgba(178, 47, 47, 0.25);
+}
+
+.add-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+/* --- Tableaux de sections (Agro, Parcelle, Categorie...) --- */
+
+.section-card {
+  padding: 1.75rem 2rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 247, 230, 0.94);
+  border: 1px solid rgba(255, 235, 151, 0.4);
+  box-shadow: 0 14px 30px rgba(44, 24, 16, 0.22);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--soil);
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+table th {
+  text-align: right;
+  padding: 0.85rem 1rem;
+  color: var(--ink-soft);
+  font-weight: 700;
+  border-bottom: 2px solid rgba(140, 94, 51, 0.25);
+}
+
+table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(140, 94, 51, 0.14);
+  color: var(--ink);
+}
+
+table tr:hover td {
+  background: rgba(255, 235, 151, 0.12);
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    margin: 0 -1rem 1.5rem;
+    padding: 1rem;
+  }
+
+  .contenu {
+    padding: 0 1rem 2rem;
+  }
+
+  .bienvenue {
+    padding: 2rem 1.25rem;
+  }
+
+  .modal {
+    padding: 1.5rem;
+  }
+
+  table {
+    font-size: 0.82rem;
+  }
+}
