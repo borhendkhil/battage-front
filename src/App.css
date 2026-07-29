@@ -43,7 +43,7 @@ body {
    ============================================================ */
 
 .login-page {
-  direction: rtl;
+  direction: ltr;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -59,6 +59,7 @@ body {
 .login-shell {
   width: 100%;
   max-width: 74rem;
+  direction: ltr;
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: 0;
@@ -78,19 +79,12 @@ body {
 .login-visual {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(150deg, var(--wheat-light) 0%, var(--wheat-mid) 45%, var(--amber) 78%, var(--bronze) 100%);
+  
   display: flex;
   align-items: flex-end;
   padding: 2.5rem;
 }
 
-.login-visual::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(44, 24, 16, 0.35) 0%, transparent 55%);
-  z-index: 1;
-}
 
 .login-visual__bg {
   position: absolute;
@@ -98,7 +92,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.35;
+  opacity: 0.65;
   mix-blend-mode: multiply;
 }
 
@@ -141,11 +135,12 @@ body {
 
 .login-visual__caption p {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  color: var(--espresso);
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: 0.01em;
+    font-size: 29px;
+    color: var(--espresso);
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 0.01em;
+    text-shadow: 1px -3px 3px #fff;
 }
 
 .login-visual__caption span {
@@ -174,13 +169,14 @@ body {
 }
 
 .login-eyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.32em;
-  color: var(--bronze);
-  text-transform: uppercase;
-  margin-bottom: 0.6rem;
+     display: inline-block;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 0.32em;
+    color: var(--bronze);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    text-shadow: -1px 1px 1px #462a1a;
 }
 
 .login-title {
@@ -226,14 +222,14 @@ body {
 }
 
 .login-input-wrap input {
-  width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 0.85rem 1.9rem 0.85rem 0.25rem;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--ink);
+     width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0.85rem 1.9rem 0.85rem 0.25rem;
+    font-family: var(--font-body);
+    font-size: 19px;
+    color: var(--ink);
 }
 
 .login-input-wrap input::placeholder {
@@ -249,6 +245,23 @@ body {
   opacity: 0.75;
   font-size: 0.95rem;
   pointer-events: none;
+}
+
+.password-toggle {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--bronze);
+  padding: 0;
+}
+
+.password-toggle:hover {
+  opacity: 0.8;
 }
 
 .login-submit {

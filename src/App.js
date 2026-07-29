@@ -58,6 +58,7 @@ function WheatSheaf() {
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -95,7 +96,7 @@ function Login() {
   };
 
   return (
-    <div className="login-page" dir="rtl" lang="ar">
+    <div className="login-page" dir="ltr" lang="fr">
       <div className="login-shell">
         <div className="login-visual">
           <img src={bg} alt="" className="login-visual__bg" />
@@ -103,22 +104,22 @@ function Login() {
             <WheatSheaf />
           </div>
           <div className="login-visual__caption">
-            <p>موسم الحصاد</p>
-            <span>إدارة عمليات الدرس والتخزين</span>
+            <p>Application Battage</p>
+            <span></span>
           </div>
         </div>
 
         <div className="login-form-panel">
           <div className="login-form-wrap">
-            <span className="login-eyebrow">تسجيل الدخول</span>
-            <h1 className="login-title">أهلاً بعودتك</h1>
+            <span className="login-eyebrow">Connexion</span>
+            <h1 className="login-title">Application Battage</h1>
             <p className="login-subtitle">
-              أدخل بياناتك للوصول إلى لوحة تحكم إدارة الحصاد والمتابعة اليومية للعمليات.
+            Gestion des opérations de récolte et de stockage
             </p>
 
             <form onSubmit={handleSubmit} noValidate>
               <div className="login-field">
-                <label htmlFor="username">اسم المستخدم</label>
+                <label htmlFor="username">Nom d'utilisateur</label>
                 <div className="login-input-wrap">
                   <input
                     id="username"
@@ -128,36 +129,44 @@ function Login() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    placeholder="أدخل اسم المستخدم"
+                    placeholder="Entrez votre nom d'utilisateur"
                   />
                   <span className="login-input-icon">✉️</span>
                 </div>
               </div>
 
               <div className="login-field">
-                <label htmlFor="password">كلمة المرور</label>
+                <label htmlFor="password">Mot de passe</label>
                 <div className="login-input-wrap">
                   <input
                     id="password"
                     name="password"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    placeholder="أدخل كلمة المرور"
+                    placeholder="Entrez votre mot de passe"
                   />
                   <span className="login-input-icon">🔒</span>
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+                  >
+                    {showPassword ? '🙈' : '👁️'}
+                  </button>
                 </div>
               </div>
 
               <button type="submit" className="login-submit">
-                دخول
+                Se connecter
               </button>
 
               <div className="login-links">
-                <span>إنشاء حساب</span>
-                <span>نسيت كلمة المرور؟</span>
+                <span>Créer un compte</span>
+                <span>Mot de passe oublié ?</span>
               </div>
 
               {error && <div className="login-error">{error}</div>}
