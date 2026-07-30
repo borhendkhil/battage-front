@@ -67,11 +67,11 @@ export default function AcceuilAdmin() {
   }, []);
 
   const adminStats = [
-    { label: 'المستخدمون', value: utilisateurs.length },
-    { label: 'المركبات', value: agroCombinats.length },
-    { label: 'القطع', value: parcelles.length },
-    { label: 'الفئات', value: categories.length },
-    { label: 'الأنواع', value: types.length }
+    { label: 'Utilisateurs', value: utilisateurs.length },
+    { label: 'Exploitations', value: agroCombinats.length },
+    { label: 'Parcelles', value: parcelles.length },
+    { label: 'Catégories', value: categories.length },
+    { label: 'Types', value: types.length }
   ];
 
   // Ajoutez ce useEffect pour recharger la liste à chaque sélection de la section "users"
@@ -192,7 +192,7 @@ export default function AcceuilAdmin() {
 
   // Suppression d'un agro_combinat
   const deleteAgro = async (COD_SOC) => {
-    if (window.confirm('Voulez-vous vraiment supprimer ce المركب الفلاحي ?')) {
+    if (window.confirm('Voulez-vous vraiment supprimer cette exploitation agricole ?')) {
       await fetch(`${API_URL}/agro-combinats/${COD_SOC}`, { method: 'DELETE' });
       fetch(API_URL + '/agro-combinats').then (r => r.json()).then(setAgroCombinats);
     }
@@ -279,7 +279,7 @@ export default function AcceuilAdmin() {
     fetch(API_URL + '/categorie-culture').then(r => r.json()).then(setCategories);
   };
   const deleteCategorie = async (id) => {
-    if (window.confirm('Voulez-vous vraiment supprimer cette الفئة الزراعية ?')) {
+    if (window.confirm('Voulez-vous vraiment supprimer cette catégorie agricole ?')) {
       await fetch(`${API_URL}/categorie-culture/${id}`, { method: 'DELETE' });
       fetch(API_URL + '/categorie-culture').then(r => r.json()).then(setCategories);
     }
@@ -335,7 +335,7 @@ export default function AcceuilAdmin() {
     fetch(API_URL + '/type-culture').then(r => r.json()).then(setTypes);
   };
   const deleteType = async (id) => {
-    if (window.confirm('Voulez-vous vraiment supprimer هذا النوع الزراعي ?')) {
+    if (window.confirm('Voulez-vous vraiment supprimer ce type agricole ?')) {
       await fetch(`${API_URL}/type-culture/${id}`, { method: 'DELETE' });
       fetch(API_URL + '/type-culture').then(r => r.json()).then(setTypes);
     }
@@ -380,7 +380,7 @@ export default function AcceuilAdmin() {
 
         {selectedSection === 'users' && (
           <div className="bienvenue" >
-            <span>مرحبا بك  في منظومة الحصاد</span>
+            <span>Bienvenue dans le système de battage</span>
           </div>
         )}
         {selectedSection === 'agro' && (
@@ -419,10 +419,10 @@ export default function AcceuilAdmin() {
         {showEditParcelleModal && (
           <div className="modal-backdrop">
             <div className="modal">
-              <h3>تعديل القطعة</h3>
+              <h3>Modifier la parcelle</h3>
               <form onSubmit={submitEditParcelle}>
                 <div className="form-group">
-                  <label>المركب الفلاحي</label>
+                  <label>Exploitation Agricole</label>
                   <input
                     type="text"
                     className="login__input"
@@ -431,7 +431,7 @@ export default function AcceuilAdmin() {
                   />
                 </div>
                 <div className="form-group">
-                  <label>كود القطعة</label>
+                  <label>Code Parcelle</label>
                   <input
                     type="text"
                     className="login__input"
@@ -440,7 +440,7 @@ export default function AcceuilAdmin() {
                   />
                 </div>
                 <div className="form-group">
-                  <label>اسم القطعة</label>
+                  <label>Nom de la parcelle</label>
                   <input
                     type="text"
                     className="login__input"
@@ -450,7 +450,7 @@ export default function AcceuilAdmin() {
                   />
                 </div>
                 <div className="form-group">
-                  <label>المساحة</label>
+                  <label>Surface</label>
                   <input
                     type="number"
                     className="login__input"
@@ -462,8 +462,8 @@ export default function AcceuilAdmin() {
                   />
                 </div>
                 <div className="modal-actions">
-                  <button type="submit" className="add-btn">تأكيد</button>
-                  <button type="button" className="delete-btn" onClick={closeEditParcelleModal}>إلغاء</button>
+                  <button type="submit" className="add-btn">Confirmer</button>
+                  <button type="button" className="delete-btn" onClick={closeEditParcelleModal}>Annuler</button>
                 </div>
               </form>
             </div>

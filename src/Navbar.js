@@ -45,9 +45,9 @@ const Navbar = ({ handleNavClick }) => {
   };
 
   return (
-    <header className="navbar" dir="rtl">
+    <header className="navbar" dir="ltr">
       <div className="navbar-container">
-        <div className="navbar-brand">د</div>
+        <div className="navbar-brand">DIAR</div>
         <button className="navbar-toggle" onClick={() => setMenuOpen(!menuOpen)}>
           <span className="bar"></span>
           <span className="bar"></span>
@@ -65,7 +65,7 @@ const Navbar = ({ handleNavClick }) => {
               }}
               style={{ cursor: 'pointer' }}
             >
-              🗂️ التصنيفات الزراعية ▼
+              🗂️ Catégories Agricoles ▼
             </a>
             {categorieDropdown && (
               <div className="navbar-dropdown">
@@ -76,7 +76,7 @@ const Navbar = ({ handleNavClick }) => {
                     setCategorieDropdown(false);
                   }}
                 >
-                  الفئات الزراعية
+                  Filières
                 </a>
                 <a
                   href="#"
@@ -85,7 +85,7 @@ const Navbar = ({ handleNavClick }) => {
                     setCategorieDropdown(false);
                   }}
                 >
-                  الأنواع الزراعية
+                  Types
                 </a>
                 <a
                   href="#"
@@ -94,7 +94,7 @@ const Navbar = ({ handleNavClick }) => {
                     setCategorieDropdown(false);
                   }}
                 >
-                  طبيعة الزراعة
+                  Nature
                 </a>
                 <a
                   href="#"
@@ -103,7 +103,7 @@ const Navbar = ({ handleNavClick }) => {
                     setCategorieDropdown(false);
                   }}
                 >
-                  الإنتاج
+                  Production
                 </a>
                 <a
                   href="#"
@@ -112,12 +112,12 @@ const Navbar = ({ handleNavClick }) => {
                     setCategorieDropdown(false);
                   }}
                 >
-                  الموسم الفلاحي
+                  Campagne
                 </a>
               </div>
             )}
           </span>
-          {/* Dropdown pour المركب الفلاحي */}
+          {/* Dropdown Complexe Agricole */}
           <span ref={agroRef} style={{ position: 'relative', display: 'inline-block' }}>
             <a
               href="#"
@@ -128,7 +128,7 @@ const Navbar = ({ handleNavClick }) => {
               }}
               style={{ cursor: 'pointer' }}
             >
-              🏭 المركب الفلاحي ▼
+              🏭 Complexe Agricole ▼
             </a>
             {agroDropdown && (
               <div className="navbar-dropdown" style={{ minWidth: 120 }}>
@@ -139,7 +139,7 @@ const Navbar = ({ handleNavClick }) => {
                     setAgroDropdown(false);
                   }}
                 >
-                  المركب الفلاحي
+                  Complexe Agricole
                 </a>
                 <a
                   href="#"
@@ -148,12 +148,12 @@ const Navbar = ({ handleNavClick }) => {
                     setAgroDropdown(false);
                   }}
                 >
-                  الضيعة او القطع
+                  Parcelles
                 </a>
               </div>
             )}
           </span>
-          {/* Dropdown إسناد */}
+          {/* Dropdown Affectation */}
           <span className="affectation-dropdown-trigger" style={{ position: 'relative', display: 'inline-block' }}>
             <a
               href="#"
@@ -165,7 +165,7 @@ const Navbar = ({ handleNavClick }) => {
               }}
               style={{ cursor: 'pointer' }}
             >
-              إسناد ▼
+              Affectation ▼
             </a>
             {affectationDropdown && (
               <div className="navbar-dropdown">
@@ -173,13 +173,13 @@ const Navbar = ({ handleNavClick }) => {
                   href="#"
                   onClick={e => handleMenuLinkClick('affectation-culture', e)}
                 >
-                  إسناد زراعات
+                  Affectation Cultures
                 </a>
                 <a
                   href="#"
                   onClick={e => handleMenuLinkClick('affectation-agent', e)}
                 >
-                  إسناد أعوان
+                  Affectation Agents
                 </a>
               </div>
             )}
@@ -209,7 +209,7 @@ const Navbar = ({ handleNavClick }) => {
                     }}
                     onClick={handleLogout}
                   >
-                    🚪 الخروج
+                    🚪 Déconnexion
                   </a>
                 </div>
               )}

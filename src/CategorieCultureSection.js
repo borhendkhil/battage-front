@@ -18,15 +18,15 @@ export default function CategorieCultureSection({
 }) {
   return (
     <div className="users-container">
-      <h2>قائمة الفئات الزراعية</h2>
-      <button className="add-btn" onClick={openAddCategorieModal}>➕ إضافة فئة زراعية</button>
+      <h2>Liste des Catégories Agricoles</h2>
+      <button className="add-btn" onClick={openAddCategorieModal}>➕ Ajouter une catégorie agricole</button>
       {showAddCategorieModal && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>إضافة فئة زراعية جديدة</h3>
+            <h3>Nouvelle catégorie agricole</h3>
             <form onSubmit={submitAddCategorie}>
               <div className="form-group">
-                <label>اسم الفئة</label>
+                <label>Nom de la catégorie</label>
                 <input
                   type="text"
                   className="login__input"
@@ -36,8 +36,8 @@ export default function CategorieCultureSection({
                 />
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد</button>
-                <button type="button" className="delete-btn" onClick={closeAddCategorieModal}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer</button>
+                <button type="button" className="delete-btn" onClick={closeAddCategorieModal}>Annuler</button>
               </div>
             </form>
           </div>
@@ -46,10 +46,10 @@ export default function CategorieCultureSection({
       {showEditCategorieModal && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>تعديل الفئة الزراعية</h3>
+            <h3>Modifier la catégorie agricole</h3>
             <form onSubmit={submitEditCategorie}>
               <div className="form-group">
-                <label>اسم الفئة</label>
+                <label>Nom de la catégorie</label>
                 <input
                   type="text"
                   className="login__input"
@@ -59,8 +59,8 @@ export default function CategorieCultureSection({
                 />
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد</button>
-                <button type="button" className="delete-btn" onClick={closeEditCategorieModal}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer</button>
+                <button type="button" className="delete-btn" onClick={closeEditCategorieModal}>Annuler</button>
               </div>
             </form>
           </div>
@@ -69,19 +69,19 @@ export default function CategorieCultureSection({
       <table className="users-table" dir="rtl">
         <thead>
           <tr>
-            <th>المعرف</th>
-            <th>اسم الفئة</th>
-            <th>الإجراءات</th>
+            <th>ID</th>
+            <th>Nom de la catégorie</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {categories.map(cat => (
             <tr key={cat.id}>
-              <td data-label="المعرف"><span className="card-label">المعرف:</span> <span className="card-value">{cat.id}</span></td>
-              <td data-label="اسم الفئة"><span className="card-label">اسم الفئة:</span> <span className="card-value">{cat.libelle}</span></td>
-              <td data-label="الإجراءات">
-                <button className="edit-btn" onClick={() => openEditCategorieModal(cat)}>تعديل</button>
-                <button className="delete-btn" onClick={() => deleteCategorie(cat.id)}>حذف</button>
+              <td data-label="ID"><span className="card-label">ID:</span> <span className="card-value">{cat.id}</span></td>
+              <td data-label="Nom"><span className="card-label">Nom:</span> <span className="card-value">{cat.libelle}</span></td>
+              <td data-label="Actions">
+                <button className="edit-btn" onClick={() => openEditCategorieModal(cat)}>Modifier</button>
+                <button className="delete-btn" onClick={() => deleteCategorie(cat.id)}>Supprimer</button>
               </td>
             </tr>
           ))}

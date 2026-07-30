@@ -32,12 +32,12 @@ export default function NavbarAgent({ onNav }) {
   };
 
   return (
-    <header className="navbar" dir="rtl" style={{marginBottom: 30}}>
+    <header className="navbar" dir="ltr" style={{marginBottom: 30}}>
       <div className="navbar-container" style={{justifyContent: 'center'}}>
-        <div className="navbar-brand">ديوان الاراضي الدولية</div>
+        <div className="navbar-brand">Domaine des Terres Internationales</div>
         <button
           className="navbar-toggle"
-          aria-label="فتح القائمة"
+          aria-label="Ouvrir le menu"
           onClick={() => setMobileOpen(v => !v)}
           style={{
             display: 'none',
@@ -65,7 +65,7 @@ export default function NavbarAgent({ onNav }) {
               padding: '0.5rem 1.2rem'
             }}
           >
-            📝 إضافة تقرير يومي
+            📝 Ajouter un rapport
           </a>
           <a
             href="#"
@@ -79,7 +79,7 @@ export default function NavbarAgent({ onNav }) {
               padding: '0.5rem 1.2rem'
             }}
           >
-            📋 قائمة التقارير
+            📋 Liste des rapports
           </a>
           <span ref={userRef} style={{ position: 'relative', display: 'inline-block' }}>
             <a
@@ -112,7 +112,7 @@ export default function NavbarAgent({ onNav }) {
                   }}
                   onClick={handleLogout}
                 >
-                  🚪 الخروج
+                  🚪 Déconnexion
                 </a>
               </div>
             )}

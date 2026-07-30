@@ -11,12 +11,12 @@ export default function AcceuilAgent() {
   const bg = require('./assets/bg-img.jpg');
 
   const sectionLabels = {
-    rapport: 'إدخال تقرير',
-    liste: 'قائمة التقارير',
+    rapport: 'Saisie Rapport',
+    liste: 'Liste des Rapports',
   };
 
-  const sectionLabel = sectionLabels[section] || 'الرئيسية';
-  const todayLabel = new Date().toLocaleDateString('ar-EG', {
+  const sectionLabel = sectionLabels[section] || 'Accueil';
+  const todayLabel = new Date().toLocaleDateString('fr-FR', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -50,22 +50,22 @@ export default function AcceuilAgent() {
 
       <div className="agent-container">
         <div className="agent-intro">
-          <h2>لوحة تحكم وكيل الإدخال</h2>
-          <p>عرض سريع لحالة التقارير اليومية والوضع الحالي للنظام.</p>
+          <h2>Tableau de Bord Agent de Saisie</h2>
+          <p>Aperçu rapide des rapports journaliers et de l'état du système.</p>
         </div>
 
         <div className="dashboard-panel" style={{ padding: '24px 20px 8px' }}>
           <div className="dashboard-cards">
             <div className="stat-card">
-              <span>عدد التقارير اليومية</span>
+              <span>Nombre de Rapports Journaliers</span>
               <strong>{rapportCount}</strong>
             </div>
             <div className="stat-card">
-              <span>القسم النشط</span>
+              <span>Section Active</span>
               <strong>{sectionLabel}</strong>
             </div>
             <div className="stat-card">
-              <span>آخر تحديث</span>
+              <span>Dernière Mise à Jour</span>
               <strong>{todayLabel}</strong>
             </div>
           </div>

@@ -90,19 +90,19 @@ export default function AcceuilSupAdmin() {
         <div className="dashboard-panel">
           <div className="dashboard-cards">
             <div className="stat-card">
-              <span>إجمالي المستخدمين</span>
+              <span>Total Utilisateurs</span>
               <strong>{utilisateurs.length}</strong>
             </div>
             <div className="stat-card">
-              <span>عدد المدراء</span>
+              <span>Nombre d'Administrateurs</span>
               <strong>{totalAdmins}</strong>
             </div>
             <div className="stat-card">
-              <span>المديرون العامون</span>
+              <span>Super-Administrateurs</span>
               <strong>{totalSuperAdmins}</strong>
             </div>
             <div className="stat-card">
-              <span>مستخدمي الإدخال</span>
+              <span>Agents de Saisie</span>
               <strong>{totalAgents}</strong>
             </div>
           </div>

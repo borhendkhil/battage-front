@@ -12,7 +12,7 @@ export default function ListeRapportsSection() {
   // Timeout pour détecter un problème réseau
   useEffect(() => {
     let timeout = setTimeout(() => {
-      if (loading) setError('تعذر الاتصال بالخادم. تحقق من اتصال الإنترنت أو أعد المحاولة.');
+      if (loading) setError('Impossible de se connecter au serveur. Vérifiez votre connexion Internet ou réessayez.');
     }, 10000); // 10 secondes
     return () => clearTimeout(timeout);
   }, [loading]);
@@ -41,7 +41,7 @@ export default function ListeRapportsSection() {
         setLoading(false);
       })
       .catch((e) => {
-        setError('تعذر الاتصال بالخادم. تحقق من اتصال الإنترنت أو أعد المحاولة.');
+        setError('Impossible de se connecter au serveur. Vérifiez votre connexion Internet ou réessayez.');
         setLoading(false);
       });
   }, [userId]);
@@ -58,7 +58,7 @@ export default function ListeRapportsSection() {
     printWindow.document.write(`
       <html>
       <head>
-        <title>تقرير يومي</title>
+        <title>Rapport journalier</title>
         <style>
           body { font-family: Tahoma, Arial, sans-serif; direction: rtl; padding: 30px; }
           h2 { text-align: center; }
@@ -67,23 +67,23 @@ export default function ListeRapportsSection() {
         </style>
       </head>
       <body>
-        <h2>تقرير يومي</h2>
+        <h2>Rapport journalier</h2>
         <table>
-          <tr><th>التاريخ</th><td>${formatDate(rapport.date_rapport)}</td></tr>
-          <tr><th>المركب</th><td>${rapport.LIB_SOC}</td></tr>
-          <tr><th>القطعة</th><td>${rapport.lib_par}</td></tr>
-          <tr><th>الإنتاج</th><td>${rapport.production_libelle}</td></tr>
-          <tr><th>المساحة المحصودة</th><td>${rapport.surface ?? '-'}</td></tr>
-          <tr><th>المساحة المربوطة</th><td>${rapport.surface_marboota ?? '-'}</td></tr>
-          <tr><th>نوع الربط</th><td>${rapport.type_marboota ?? '-'}</td></tr>
-          <tr><th>الإنتاج (الكمية)</th><td>${rapport.production ?? '-'}</td></tr>
-          <tr><th>المبدلات</th><td>${rapport.echanges ?? '-'}</td></tr>
-          <tr><th>التخزين</th><td>${rapport.stockage ?? '-'}</td></tr>
-          <tr><th>التسويق</th><td>${rapport.commerce ?? '-'}</td></tr>
-          <tr><th>المستخدم</th><td>${rapport.username}</td></tr>
+          <tr><th>Date</th><td>${formatDate(rapport.date_rapport)}</td></tr>
+          <tr><th>Exploitation</th><td>${rapport.LIB_SOC}</td></tr>
+          <tr><th>Parcelle</th><td>${rapport.lib_par}</td></tr>
+          <tr><th>Production</th><td>${rapport.production_libelle}</td></tr>
+          <tr><th>Surface récoltée</th><td>${rapport.surface ?? '-'}</td></tr>
+          <tr><th>Surface liée</th><td>${rapport.surface_marboota ?? '-'}</td></tr>
+          <tr><th>Type de liaison</th><td>${rapport.type_marboota ?? '-'}</td></tr>
+          <tr><th>Production (quantité)</th><td>${rapport.production ?? '-'}</td></tr>
+          <tr><th>Échanges</th><td>${rapport.echanges ?? '-'}</td></tr>
+          <tr><th>Stockage</th><td>${rapport.stockage ?? '-'}</td></tr>
+          <tr><th>Commercialisation</th><td>${rapport.commerce ?? '-'}</td></tr>
+          <tr><th>Utilisateur</th><td>${rapport.username}</td></tr>
         </table>
         <br/><br/>
-        <div style="text-align:center;">توقيع العون: _______________</div>
+        <div style="text-align:center;">Signature de l'agent : _______________</div>
         <script>window.print();</script>
       </body>
       </html>
@@ -93,50 +93,50 @@ export default function ListeRapportsSection() {
 
   return (
     <div className="agent-container">
-      <h2>قائمة التقارير اليومية</h2>
+      <h2>Liste des rapports journaliers</h2>
       {error ? (
         <div style={{textAlign: 'center', color: 'red', marginTop: 40}}>{error}</div>
       ) : loading ? (
-        <div style={{textAlign: 'center', color: '#888', marginTop: 40}}>جاري التحميل...</div>
+        <div style={{textAlign: 'center', color: '#888', marginTop: 40}}>Chargement...</div>
       ) : rapports.length === 0 ? (
         <div style={{textAlign: 'center', color: '#888', marginTop: 40}}>
-          <span>لا توجد تقارير يومية</span>
+          <span>Aucun rapport journalier</span>
         </div>
       ) : (
         <div className="table-responsive" style={{width: '100%', overflowX: 'auto', marginTop: 30}}>
           <table className="users-table rapport-table" dir="rtl" style={{minWidth: 900, width: '100%'}}>
             <thead>
               <tr>
-                <th>التاريخ</th>
-                <th>المركب</th>
-                <th>القطعة</th>
-                <th>الإنتاج</th>
-                <th>المساحة المحصودة</th>
-                <th>المساحة المربوطة</th>
-                <th>نوع الربط</th>
-                <th>الإنتاج (الكمية)</th>
-                <th>المبدلات</th>
-                <th>التخزين</th>
-                <th>التسويق</th>
-                <th>إجراءات</th>
+                <th>Date</th>
+                <th>Exploitation</th>
+                <th>Parcelle</th>
+                <th>Production</th>
+                <th>Surface récoltée</th>
+                <th>Surface liée</th>
+                <th>Type de liaison</th>
+                <th>Production (quantité)</th>
+                <th>Échanges</th>
+                <th>Stockage</th>
+                <th>Commercialisation</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {rapports.map(r => (
                 <tr key={r.id}>
-                  <td data-label="التاريخ"><span className="card-label">التاريخ:</span> <span className="card-value">{formatDate(r.date_rapport)}</span></td>
-                  <td data-label="المركب"><span className="card-label">المركب:</span> <span className="card-value">{r.LIB_SOC}</span></td>
-                  <td data-label="القطعة"><span className="card-label">القطعة:</span> <span className="card-value">{r.lib_par}</span></td>
-                  <td data-label="الإنتاج"><span className="card-label">الإنتاج:</span> <span className="card-value">{r.production_libelle}</span></td>
-                  <td data-label="المساحة المحصودة"><span className="card-label">المساحة المحصودة:</span> <span className="card-value">{r.surface ?? '-'}</span></td>
-                  <td data-label="المساحة المربوطة"><span className="card-label">المساحة المربوطة:</span> <span className="card-value">{r.surface_marboota ?? '-'}</span></td>
-                  <td data-label="نوع الربط"><span className="card-label">نوع الربط:</span> <span className="card-value">{r.type_marboota ?? '-'}</span></td>
-                  <td data-label="الإنتاج (الكمية)"><span className="card-label">الإنتاج (الكمية):</span> <span className="card-value">{r.production ?? '-'}</span></td>
-                  <td data-label="المبدلات"><span className="card-label">المبدلات:</span> <span className="card-value">{r.echanges ?? '-'}</span></td>
-                  <td data-label="التخزين"><span className="card-label">التخزين:</span> <span className="card-value">{r.stockage ?? '-'}</span></td>
-                  <td data-label="التسويق"><span className="card-label">التسويق:</span> <span className="card-value">{r.commerce ?? '-'}</span></td>
-                  <td data-label="إجراءات">
-                    <button className="add-btn" onClick={() => handlePrint(r)}>🖨️ طباعة</button>
+                  <td data-label="Date"><span className="card-label">Date:</span> <span className="card-value">{formatDate(r.date_rapport)}</span></td>
+                  <td data-label="Exploitation"><span className="card-label">Exploitation:</span> <span className="card-value">{r.LIB_SOC}</span></td>
+                  <td data-label="Parcelle"><span className="card-label">Parcelle:</span> <span className="card-value">{r.lib_par}</span></td>
+                  <td data-label="Production"><span className="card-label">Production:</span> <span className="card-value">{r.production_libelle}</span></td>
+                  <td data-label="Surface récoltée"><span className="card-label">Surface récoltée:</span> <span className="card-value">{r.surface ?? '-'}</span></td>
+                  <td data-label="Surface liée"><span className="card-label">Surface liée:</span> <span className="card-value">{r.surface_marboota ?? '-'}</span></td>
+                  <td data-label="Type de liaison"><span className="card-label">Type de liaison:</span> <span className="card-value">{r.type_marboota ?? '-'}</span></td>
+                  <td data-label="Production (quantité)"><span className="card-label">Production (quantité):</span> <span className="card-value">{r.production ?? '-'}</span></td>
+                  <td data-label="Échanges"><span className="card-label">Échanges:</span> <span className="card-value">{r.echanges ?? '-'}</span></td>
+                  <td data-label="Stockage"><span className="card-label">Stockage:</span> <span className="card-value">{r.stockage ?? '-'}</span></td>
+                  <td data-label="Commercialisation"><span className="card-label">Commercialisation:</span> <span className="card-value">{r.commerce ?? '-'}</span></td>
+                  <td data-label="Actions">
+                    <button className="add-btn" onClick={() => handlePrint(r)}>🖨️ Imprimer</button>
                   </td>
                 </tr>
               ))}

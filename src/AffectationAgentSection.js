@@ -69,19 +69,19 @@ export default function AffectationAgentSection() {
     // Correction : la campagne doit être prise automatiquement (active)
     const campagneActive = campagnes[0]?.cod_campagne || '';
     if (!selectedAgent) {
-      setMessage('يرجى اختيار العون');
+      setMessage('Veuillez sélectionner l\'agent');
       return;
     }
     if (!selectedAgro) {
-      setMessage('يرجى اختيار مركب');
+      setMessage('Veuillez sélectionner une exploitation');
       return;
     }
     if (!campagneActive) {
-      setMessage('لا يوجد موسم فلاحي نشط');
+      setMessage('Aucune campagne agricole active');
       return;
     }
     if (!selectedParcelles || selectedParcelles.length === 0) {
-      setMessage('يرجى اختيار قطعة واحدة على الأقل');
+      setMessage('Veuillez sélectionner au moins une parcelle');
       return;
     }
     let ok = true;
@@ -103,7 +103,7 @@ export default function AffectationAgentSection() {
       }
     }
     if (ok) {
-      setMessage('تمت عملية الإسناد بنجاح');
+      setMessage('Affectation effectuée avec succès');
       setSelectedParcelles([]);
       setShowAddModal(false);
       reloadAffectations();
@@ -111,7 +111,7 @@ export default function AffectationAgentSection() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('هل تريد حذف هذا الإسناد؟')) {
+    if (window.confirm('Voulez-vous supprimer cette affectation ?')) {
       await fetch(`${API_URL}/affectation-agent/${id}`, { method: 'DELETE' });
       reloadAffectations();
     }
@@ -165,7 +165,7 @@ export default function AffectationAgentSection() {
     e.preventDefault();
     setMessage('');
     if (!editAffect.agent_id || !editAffect.COD_SOC || !editAffect.cod_par || !editAffect.cod_campagne) {
-      setMessage('يرجى اختيار جميع الحقول');
+      setMessage('Veuillez remplir tous les champs');
       return;
     }
     const res = await fetch(`${API_URL}/affectation-agent/${editAffect.id}`, {
@@ -181,7 +181,7 @@ export default function AffectationAgentSection() {
     setShowEditModal(false);
     setEditAffect(null);
     reloadAffectations();
-    setMessage('تم التعديل بنجاح');
+    setMessage('Modification réussie');
   };
 
   // Ajout utilisateur
@@ -195,7 +195,7 @@ export default function AffectationAgentSection() {
     e.preventDefault();
     setUserMessage('');
     if (!newUser.username || !newUser.password || !newUser.role) {
-      setUserMessage('يرجى ملء جميع الحقول');
+      setUserMessage('Veuillez remplir tous les champs');
       return;
     }
     try {
@@ -205,42 +205,42 @@ export default function AffectationAgentSection() {
         body: JSON.stringify(newUser)
       });
       if (!res.ok) {
-        setUserMessage('حدث خطأ أثناء إضافة المستخدم');
+        setUserMessage('Erreur lors de l\'ajout de l\'utilisateur');
         return;
       }
-      setUserMessage('تمت إضافة المستخدم بنجاح');
+      setUserMessage('Utilisateur ajouté avec succès');
       setShowAddUserModal(false);
     } catch (err) {
-      setUserMessage('خطأ في الاتصال بالشبكة');
+      setUserMessage('Erreur de connexion réseau');
     }
   };
 
   return (
     <div className="affectation-container">
-      <h2>إسناد أعوان إلى قطع ومركبات</h2>
-      <button className="add-btn" onClick={openAddModal}>➕ إضافة إسناد عون</button>
-      <button className="add-btn" onClick={openAddUserModal}>➕ إضافة مستخدم</button>
+      <h2>Affectation des agents aux parcelles et exploitations</h2>
+      <button className="add-btn" onClick={openAddModal}>➕ Ajouter affectation agent</button>
+      <button className="add-btn" onClick={openAddUserModal}>➕ Ajouter utilisateur</button>
       {showAddModal && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>إسناد عون إلى قطع ومركبات</h3>
+            <h3>Affecter un agent aux parcelles et exploitations</h3>
             <form onSubmit={handleAffecter}>
               <div className="form-group">
-                <label>اختر العون</label>
+                <label>Sélectionner l'agent</label>
                 <select
                   className="login__input"
                   value={selectedAgent}
                   onChange={e => setSelectedAgent(e.target.value)}
                   required
                 >
-                  <option value="">اختر العون</option>
+                  <option value="">Sélectionner l'agent</option>
                   {agents.map(a => (
                     <option key={a.id} value={a.id}>{a.username}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label>الموسم الفلاحي الحالي</label>
+                <label>Campagne agricole active</label>
                 <input
                   className="login__input"
                   value={campagnes[0]?.libelle || ''}
@@ -248,7 +248,7 @@ export default function AffectationAgentSection() {
                 />
               </div>
               <div className="form-group">
-                <label>اختر المركب الفلاحي</label>
+                <label>Sélectionner l'exploitation</label>
                 <select
                   className="login__input"
                   value={selectedAgro}
@@ -258,16 +258,16 @@ export default function AffectationAgentSection() {
                   }}
                   required
                 >
-                  <option value="">اختر المركب</option>
+                  <option value="">Sélectionner l'exploitation</option>
                   {agros.map(a => (
                     <option key={a.COD_SOC} value={a.COD_SOC}>{a.LIB_SOC}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label>اختر القطع</label>
+                <label>Sélectionner les parcelles</label>
                 <div className="agro-list">
-                  {parcellesFiltered.length === 0 && <span>اختر مركب لعرض القطع</span>}
+                  {parcellesFiltered.length === 0 && <span>Sélectionnez une exploitation pour voir les parcelles</span>}
                   {parcellesFiltered.map(p => (
                     <div key={p.cod_par}>
                       <input
@@ -276,14 +276,14 @@ export default function AffectationAgentSection() {
                         onChange={() => handleParcelleToggle(p.cod_par)}
                         id={`parcelle-${p.cod_par}`}
                       />
-                      <label htmlFor={`parcelle-${p.cod_par}`}>{p.lib_par} (المساحة: {p.surface})</label>
+                      <label htmlFor={`parcelle-${p.cod_par}`}>{p.lib_par} (Surface: {p.surface})</label>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد الإسناد</button>
-                <button type="button" className="delete-btn" onClick={closeAddModal}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer l'affectation</button>
+                <button type="button" className="delete-btn" onClick={closeAddModal}>Annuler</button>
               </div>
               {message && <div className="affectation-result">{message}</div>}
             </form>
@@ -293,24 +293,24 @@ export default function AffectationAgentSection() {
       {showEditModal && editAffect && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>تعديل إسناد العون</h3>
+            <h3>Modifier l'affectation de l'agent</h3>
             <form onSubmit={submitEditAffect}>
               <div className="form-group">
-                <label>اختر العون</label>
+                <label>Sélectionner l'agent</label>
                 <select
                   className="login__input"
                   value={editAffect.agent_id}
                   onChange={e => handleEditChange('agent_id', e.target.value)}
                   required
                 >
-                  <option value="">اختر العون</option>
+                  <option value="">Sélectionner l'agent</option>
                   {agents.map(a => (
                     <option key={a.id} value={a.id}>{a.username}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label>الموسم الفلاحي الحالي</label>
+                <label>Campagne agricole active</label>
                 <input
                   className="login__input"
                   value={campagnes[0]?.libelle || ''}
@@ -318,21 +318,21 @@ export default function AffectationAgentSection() {
                 />
               </div>
               <div className="form-group">
-                <label>اختر المركب الفلاحي</label>
+                <label>Sélectionner l'exploitation</label>
                 <select
                   className="login__input"
                   value={editAffect.COD_SOC}
                   onChange={e => handleEditChange('COD_SOC', e.target.value)}
                   required
                 >
-                  <option value="">اختر المركب</option>
+                  <option value="">Sélectionner l'exploitation</option>
                   {agros.map(a => (
                     <option key={a.COD_SOC} value={a.COD_SOC}>{a.LIB_SOC}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label>اختر القطعة</label>
+                <label>Sélectionner la parcelle</label>
                 <div className="agro-list">
                   {parcelles
                     .filter(p => p.COD_SOC === editAffect.COD_SOC)
@@ -344,14 +344,14 @@ export default function AffectationAgentSection() {
                           onChange={() => handleEditParcelleToggle(p.cod_par)}
                           id={`edit-parcelle-${p.cod_par}`}
                         />
-                        <label htmlFor={`edit-parcelle-${p.cod_par}`}>{p.lib_par} (المساحة: {p.surface})</label>
+                        <label htmlFor={`edit-parcelle-${p.cod_par}`}>{p.lib_par} (Surface: {p.surface})</label>
                       </div>
                     ))}
                 </div>
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد التعديل</button>
-                <button type="button" className="delete-btn" onClick={closeEditModal}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer la modification</button>
+                <button type="button" className="delete-btn" onClick={closeEditModal}>Annuler</button>
               </div>
               {message && <div className="affectation-result">{message}</div>}
             </form>
@@ -361,42 +361,42 @@ export default function AffectationAgentSection() {
       {showAddUserModal && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>إضافة مستخدم جديد</h3>
+            <h3>Ajouter un nouvel utilisateur</h3>
             <form onSubmit={handleAddUser}>
               <div className="form-group">
-                <label>اسم المستخدم</label>
+                <label>Nom d'utilisateur</label>
                 <input className="login__input" value={newUser.username} onChange={e => setNewUser({ ...newUser, username: e.target.value })} required />
               </div>
               <div className="form-group">
-                <label>كلمة المرور</label>
+                <label>Mot de passe</label>
                 <input className="login__input" type="password" value={newUser.password} onChange={e => setNewUser({ ...newUser, password: e.target.value })} required />
               </div>
               <div className="form-group">
-                <label>الدور</label>
+                <label>Rôle</label>
                 <select className="login__input" value={newUser.role} onChange={e => setNewUser({ ...newUser, role: e.target.value })} required>
-                  <option value="agent-saisie">عون</option>
-                  <option value="admin">مدير</option>
-                  <option value="super-admin">مدير عام</option>
+                  <option value="agent-saisie">Agent</option>
+                  <option value="admin">Administrateur</option>
+                  <option value="super-admin">Super Administrateur</option>
                 </select>
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">إضافة</button>
-                <button type="button" className="delete-btn" onClick={closeAddUserModal}>إلغاء</button>
+                <button type="submit" className="add-btn">Ajouter</button>
+                <button type="button" className="delete-btn" onClick={closeAddUserModal}>Annuler</button>
               </div>
               {userMessage && <div className="affectation-result">{userMessage}</div>}
             </form>
           </div>
         </div>
       )}
-      <h2 style={{marginTop: 30}}>قائمة الإسنادات</h2>
+      <h2 style={{marginTop: 30}}>Liste des affectations</h2>
       <table className="users-table" dir="rtl">
         <thead>
           <tr>
-            <th>العون</th>
-            <th>الموسم الفلاحي</th>
-            <th>المركب</th>
-            <th>القطعة</th>
-            <th>الإجراءات</th>
+            <th>Agent</th>
+            <th>Campagne</th>
+            <th>Exploitation</th>
+            <th>Parcelle</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -415,14 +415,14 @@ export default function AffectationAgentSection() {
                 rows.push(
                   <tr key={a.id}>
                     {idx === 0 && (
-                      <td rowSpan={list.length} data-label="العون"><span className="card-label">العون:</span> <span className="card-value">{a.username}</span></td>
+                      <td rowSpan={list.length} data-label="Agent"><span className="card-label">Agent:</span> <span className="card-value">{a.username}</span></td>
                     )}
-                    <td data-label="الموسم الفلاحي"><span className="card-label">الموسم الفلاحي:</span> <span className="card-value">{a.campagne_libelle}</span></td>
-                    <td data-label="المركب"><span className="card-label">المركب:</span> <span className="card-value">{a.LIB_SOC}</span></td>
-                    <td data-label="القطعة"><span className="card-label">القطعة:</span> <span className="card-value">{a.lib_par}</span></td>
-                    <td data-label="الإجراءات">
-                      <button className="edit-btn" onClick={() => openEditModal(a)}>تعديل</button>
-                      <button className="delete-btn" onClick={() => handleDelete(a.id)}>حذف</button>
+                    <td data-label="Campagne"><span className="card-label">Campagne:</span> <span className="card-value">{a.campagne_libelle}</span></td>
+                    <td data-label="Exploitation"><span className="card-label">Exploitation:</span> <span className="card-value">{a.LIB_SOC}</span></td>
+                    <td data-label="Parcelle"><span className="card-label">Parcelle:</span> <span className="card-value">{a.lib_par}</span></td>
+                    <td data-label="Actions">
+                      <button className="edit-btn" onClick={() => openEditModal(a)}>Modifier</button>
+                      <button className="delete-btn" onClick={() => handleDelete(a.id)}>Supprimer</button>
                     </td>
                   </tr>
                 );

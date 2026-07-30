@@ -70,7 +70,7 @@ export default function AffectationCultureSection() {
         p.cod_par === newAffect.cod_par
     );
     if (parcelle && parseFloat(newAffect.surface_affectee) > parseFloat(parcelle.surface)) {
-      alert('المساحة المبذورة  يجب أن لا تتجاوز مساحة القطعة المختارة');
+      alert('La surface ensemencée ne doit pas dépasser la surface de la parcelle sélectionnée');
       return;
     }
     // Si production_id n'est pas utilisé côté backend, retirez-le de l'objet envoyé
@@ -105,7 +105,7 @@ export default function AffectationCultureSection() {
         p.cod_par === editAffect.cod_par
     );
     if (parcelle && parseFloat(editAffect.surface_affectee) > parseFloat(parcelle.surface)) {
-      alert('المساحة المبذورة  يجب أن لا تتجاوز مساحة القطعة المختارة');
+      alert('La surface ensemencée ne doit pas dépasser la surface de la parcelle sélectionnée');
       return;
     }
     // Si production_id n'est pas utilisé côté backend, retirez-le de l'objet envoyé
@@ -141,39 +141,39 @@ export default function AffectationCultureSection() {
 
   return (
     <div className="users-container">
-      <h2>إسناد زراعات للقطع</h2>
-      <button className="add-btn" onClick={openAdd}>➕ إضافة إسناد</button>
+      <h2>Affectation des cultures aux parcelles</h2>
+      <button className="add-btn" onClick={openAdd}>➕ Ajouter affectation</button>
       {showAdd && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>إضافة إسناد جديد</h3>
+            <h3>Nouvelle affectation</h3>
             <form onSubmit={submitAdd}>
               <div className="form-group">
-                <label>المركب الفلاحي</label>
+                <label>Exploitation</label>
                 <select
                   className="login__input"
                   value={newAffect.COD_SOC}
                   onChange={e => setNewAffect({ ...newAffect, COD_SOC: e.target.value, cod_par: '' })}
                   required
                 >
-                  <option value="">اختر المركب</option>
+                  <option value="">Sélectionner l'exploitation</option>
                   {agros.map(a => <option key={a.COD_SOC} value={a.COD_SOC}>{a.LIB_SOC}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>القطعة</label>
+                <label>Parcelle</label>
                 <select
                   className="login__input"
                   value={newAffect.cod_par}
                   onChange={e => setNewAffect({ ...newAffect, cod_par: e.target.value })}
                   required
                 >
-                  <option value="">اختر القطعة</option>
+                  <option value="">Sélectionner la parcelle</option>
                   {parcellesFiltered(newAffect.COD_SOC).map(p => <option key={p.cod_par} value={p.cod_par}>{p.lib_par}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>مساحة القطعة المختارة</label>
+                <label>Surface de la parcelle sélectionnée</label>
                 <input
                   className="login__input"
                   type="number"
@@ -188,7 +188,7 @@ export default function AffectationCultureSection() {
                 />
               </div>
               <div className="form-group">
-                <label>الموسم الفلاحي</label>
+                <label>Campagne agricole</label>
                 {/* Affiche la campagne active seulement, non modifiable */}
                 <input
                   className="login__input"
@@ -199,35 +199,35 @@ export default function AffectationCultureSection() {
                 />
               </div>
               <div className="form-group">
-                <label>الفئة الزراعية</label>
+                <label>Catégorie agricole</label>
                 <select className="login__input" value={newAffect.categorie_id} onChange={e => setNewAffect({ ...newAffect, categorie_id: e.target.value })} required>
-                  <option value="">اختر الفئة</option>
+                  <option value="">Sélectionner la catégorie</option>
                   {categories.map(c => <option key={c.id} value={c.id}>{c.libelle}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>النوع الزراعي</label>
+                <label>Type agricole</label>
                 <select className="login__input" value={newAffect.type_culture_id} onChange={e => setNewAffect({ ...newAffect, type_culture_id: e.target.value })} required>
-                  <option value="">اختر النوع</option>
+                  <option value="">Sélectionner le type</option>
                   {types.filter(t => String(t.categorie_id) === String(newAffect.categorie_id)).map(t => (
                     <option key={t.id} value={t.id}>{t.libelle}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label>طبيعة الزراعة</label>
+                <label>Nature de culture</label>
                 <select className="login__input" value={newAffect.nature_culture_id} onChange={e => setNewAffect({ ...newAffect, nature_culture_id: e.target.value })} required>
-                  <option value="">اختر الطبيعة</option>
+                  <option value="">Sélectionner la nature</option>
                   {natures.map(n => <option key={n.id} value={n.id}>{n.libelle}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>المساحة المبذورة </label>
+                <label>Surface ensemencée</label>
                 <input className="login__input" type="number" value={newAffect.surface_affectee} onChange={e => setNewAffect({ ...newAffect, surface_affectee: e.target.value })} required min="0" step="0.01" />
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد</button>
-                <button type="button" className="delete-btn" onClick={closeAdd}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer</button>
+                <button type="button" className="delete-btn" onClick={closeAdd}>Annuler</button>
               </div>
             </form>
           </div>
@@ -236,24 +236,24 @@ export default function AffectationCultureSection() {
       {showEdit && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>تعديل الإسناد</h3>
+            <h3>Modifier l'affectation</h3>
             <form onSubmit={submitEdit}>
               <div className="form-group">
-                <label>المركب الفلاحي</label>
+                <label>Exploitation</label>
                 <select className="login__input" value={editAffect.COD_SOC} onChange={e => setEditAffect({ ...editAffect, COD_SOC: e.target.value, cod_par: '' })} required>
-                  <option value="">اختر المركب</option>
+                  <option value="">Sélectionner l'exploitation</option>
                   {agros.map(a => <option key={a.COD_SOC} value={a.COD_SOC}>{a.LIB_SOC}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>القطعة</label>
+                <label>Parcelle</label>
                 <select className="login__input" value={editAffect.cod_par} onChange={e => setEditAffect({ ...editAffect, cod_par: e.target.value })} required>
-                  <option value="">اختر القطعة</option>
+                  <option value="">Sélectionner la parcelle</option>
                   {parcellesFiltered(editAffect.COD_SOC).map(p => <option key={p.cod_par} value={p.cod_par}>{p.lib_par}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>الموسم الفلاحي</label>
+                <label>Campagne agricole</label>
                 {/* Affiche la campagne active seulement, non modifiable */}
                 <input
                   className="login__input"
@@ -264,30 +264,30 @@ export default function AffectationCultureSection() {
                 />
               </div>
               <div className="form-group">
-                <label>الفئة الزراعية</label>
+                <label>Catégorie agricole</label>
                 <select className="login__input" value={editAffect.categorie_id} onChange={e => setEditAffect({ ...editAffect, categorie_id: e.target.value })} required>
-                  <option value="">اختر الفئة</option>
+                  <option value="">Sélectionner la catégorie</option>
                   {categories.map(c => <option key={c.id} value={c.id}>{c.libelle}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>النوع الزراعي</label>
+                <label>Type agricole</label>
                 <select className="login__input" value={editAffect.type_culture_id} onChange={e => setEditAffect({ ...editAffect, type_culture_id: e.target.value })} required>
-                  <option value="">اختر النوع</option>
+                  <option value="">Sélectionner le type</option>
                   {types.filter(t => String(t.categorie_id) === String(editAffect.categorie_id)).map(t => (
                     <option key={t.id} value={t.id}>{t.libelle}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label>طبيعة الزراعة</label>
+                <label>Nature de culture</label>
                 <select className="login__input" value={editAffect.nature_culture_id} onChange={e => setEditAffect({ ...editAffect, nature_culture_id: e.target.value })} required>
-                  <option value="">اختر الطبيعة</option>
+                  <option value="">Sélectionner la nature</option>
                   {natures.map(n => <option key={n.id} value={n.id}>{n.libelle}</option>)}
                 </select>
               </div>
               <div className="form-group">
-                <label>مساحة القطعة المختارة</label>
+                <label>Surface de la parcelle sélectionnée</label>
                 <input
                   className="login__input"
                   type="number"
@@ -302,7 +302,7 @@ export default function AffectationCultureSection() {
                 />
               </div>
               <div className="form-group">
-                <label>المساحة المبذورة </label>
+                <label>Surface ensemencée</label>
                 <input
                   className="login__input"
                   type="number"
@@ -321,8 +321,8 @@ export default function AffectationCultureSection() {
                 />
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد</button>
-                <button type="button" className="delete-btn" onClick={closeEdit}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer</button>
+                <button type="button" className="delete-btn" onClick={closeEdit}>Annuler</button>
               </div>
             </form>
           </div>
@@ -331,36 +331,36 @@ export default function AffectationCultureSection() {
       <table className="users-table" dir="rtl">
         <thead>
           <tr>
-            <th>المركب</th>
-            <th>القطعة</th>
-            <th>الموسم الفلاحي</th>
-            <th>الفئة</th>
-            <th>النوع</th>
-            <th>الطبيعة</th>
-            {/* <th>الإنتاج</th> */}
-            <th>المساحة المبذورة </th>
-            <th>الإجراءات</th>
+            <th>Exploitation</th>
+            <th>Parcelle</th>
+            <th>Campagne</th>
+            <th>Catégorie</th>
+            <th>Type</th>
+            <th>Nature</th>
+            {/* <th>Production</th> */}
+            <th>Surface ensemencée</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {affectations.map(a => (
             <tr key={a.id}>
-              <td data-label="المركب"><span className="card-label">المركب:</span> <span className="card-value">{agros.find(x => x.COD_SOC === a.COD_SOC)?.LIB_SOC || a.COD_SOC}</span></td>
-              <td data-label="القطعة"><span className="card-label">القطعة:</span> <span className="card-value">{parcelles.find(p => p.COD_SOC === a.COD_SOC && p.cod_par === a.cod_par)?.lib_par || a.cod_par}</span></td>
-              <td data-label="الموسم الفلاحي"><span className="card-label">الموسم الفلاحي:</span> <span className="card-value">{campagnes.find(c => c.cod_campagne === a.cod_campagne)?.libelle || a.cod_campagne}</span></td>
-              <td data-label="الفئة"><span className="card-label">الفئة:</span> <span className="card-value">{categories.find(c => c.id === a.categorie_id)?.libelle || a.categorie_id}</span></td>
-              <td data-label="النوع">
-                <span className="card-label">النوع:</span>
+              <td data-label="Exploitation"><span className="card-label">Exploitation:</span> <span className="card-value">{agros.find(x => x.COD_SOC === a.COD_SOC)?.LIB_SOC || a.COD_SOC}</span></td>
+              <td data-label="Parcelle"><span className="card-label">Parcelle:</span> <span className="card-value">{parcelles.find(p => p.COD_SOC === a.COD_SOC && p.cod_par === a.cod_par)?.lib_par || a.cod_par}</span></td>
+              <td data-label="Campagne"><span className="card-label">Campagne:</span> <span className="card-value">{campagnes.find(c => c.cod_campagne === a.cod_campagne)?.libelle || a.cod_campagne}</span></td>
+              <td data-label="Catégorie"><span className="card-label">Catégorie:</span> <span className="card-value">{categories.find(c => c.id === a.categorie_id)?.libelle || a.categorie_id}</span></td>
+              <td data-label="Type">
+                <span className="card-label">Type:</span>
                 <span className="card-value">
                   {types.find(t => t.id === a.type_culture_id && t.categorie_id === a.categorie_id)?.libelle || '-'}
                 </span>
               </td>
-              <td data-label="الطبيعة"><span className="card-label">الطبيعة:</span> <span className="card-value">{natures.find(n => n.id === a.nature_culture_id)?.libelle || a.nature_culture_id}</span></td>
+              <td data-label="Nature"><span className="card-label">Nature:</span> <span className="card-value">{natures.find(n => n.id === a.nature_culture_id)?.libelle || a.nature_culture_id}</span></td>
               {/* <td>{productions.find(p => p.id === a.production_id)?.libelle || a.production_id}</td> */}
-              <td data-label="المساحة المبذورة "><span className="card-label">المساحة المبذورة :</span> <span className="card-value">{a.surface_affectee}</span></td>
-              <td data-label="الإجراءات">
-                <button className="edit-btn" onClick={() => openEdit(a)}>تعديل</button>
-                <button className="delete-btn" onClick={() => deleteAffect(a.id)}>حذف</button>
+              <td data-label="Surface ensemencée"><span className="card-label">Surface ensemencée :</span> <span className="card-value">{a.surface_affectee}</span></td>
+              <td data-label="Actions">
+                <button className="edit-btn" onClick={() => openEdit(a)}>Modifier</button>
+                <button className="delete-btn" onClick={() => deleteAffect(a.id)}>Supprimer</button>
               </td>
             </tr>
           ))}

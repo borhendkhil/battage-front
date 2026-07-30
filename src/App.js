@@ -66,16 +66,12 @@ function Login() {
     e.preventDefault();
     setError('');
     try {
-      const url = API_URL + '/login';
-      console.log('[login] fetching:', url, { username, password });
-      const res = await fetch(url, {
+      const res = await fetch(API_URL + '/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
-      console.log('[login] response status:', res.status);
       const user = await res.json();
-      console.log('[login] response body:', user);
       if (user.success) {
         localStorage.setItem('username', username);
         if (user.role === 'admin') {
@@ -88,10 +84,10 @@ function Login() {
           navigate('/acceuil');
         }
       } else {
-        setError('اسم المستخدم أو كلمة المرور غير صحيحة');
+        setError("Nom d'utilisateur ou mot de passe incorrect");
       }
     } catch (err) {
-      setError('تعذّر الاتصال بالخادم، حاول مجددًا');
+      setError('Impossible de se connecter au serveur, réessayez');
     }
   };
 

@@ -47,20 +47,20 @@ export default function NatureCultureSection() {
 
   return (
     <div className="users-container">
-      <h2>قائمة طبيعة الزراعة</h2>
-      <button className="add-btn" onClick={openAdd}>➕ إضافة طبيعة</button>
+      <h2>Liste des Natures de Culture</h2>
+      <button className="add-btn" onClick={openAdd}>➕ Ajouter une nature</button>
       {showAdd && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>إضافة طبيعة جديدة</h3>
+            <h3>Nouvelle nature</h3>
             <form onSubmit={submitAdd}>
               <div className="form-group">
-                <label>الطبيعة</label>
+                <label>Nature</label>
                 <input className="login__input" value={newNature.libelle} onChange={e => setNewNature({ libelle: e.target.value })} required />
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد</button>
-                <button type="button" className="delete-btn" onClick={closeAdd}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer</button>
+                <button type="button" className="delete-btn" onClick={closeAdd}>Annuler</button>
               </div>
             </form>
           </div>
@@ -69,15 +69,15 @@ export default function NatureCultureSection() {
       {showEdit && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>تعديل الطبيعة</h3>
+            <h3>Modifier la nature</h3>
             <form onSubmit={submitEdit}>
               <div className="form-group">
-                <label>الطبيعة</label>
+                <label>Nature</label>
                 <input className="login__input" value={editNature.libelle} onChange={e => setEditNature({ ...editNature, libelle: e.target.value })} required />
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد</button>
-                <button type="button" className="delete-btn" onClick={closeEdit}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer</button>
+                <button type="button" className="delete-btn" onClick={closeEdit}>Annuler</button>
               </div>
             </form>
           </div>
@@ -86,17 +86,17 @@ export default function NatureCultureSection() {
       <table className="users-table" dir="rtl">
         <thead>
           <tr>
-            <th>الطبيعة</th>
-            <th>الإجراءات</th>
+            <th>Nature</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {natures.map(n => (
             <tr key={n.id}>
-              <td data-label="الطبيعة"><span className="card-label">الطبيعة:</span> <span className="card-value">{n.libelle}</span></td>
-              <td data-label="الإجراءات">
-                <button className="edit-btn" onClick={() => openEdit(n)}>تعديل</button>
-                <button className="delete-btn" onClick={() => deleteNature(n.id)}>حذف</button>
+              <td data-label="Nature"><span className="card-label">Nature:</span> <span className="card-value">{n.libelle}</span></td>
+              <td data-label="Actions">
+                <button className="edit-btn" onClick={() => openEdit(n)}>Modifier</button>
+                <button className="delete-btn" onClick={() => deleteNature(n.id)}>Supprimer</button>
               </td>
             </tr>
           ))}

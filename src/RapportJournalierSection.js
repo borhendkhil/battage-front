@@ -93,14 +93,14 @@ export default function RapportJournalierSection() {
     e.preventDefault();
     setMessage('');
     if (!selectedParcelle || !selectedAffectation || !selectedProduction) {
-      setMessage('يرجى اختيار جميع الحقول المطلوبة');
+      setMessage('Veuillez remplir tous les champs obligatoires');
       return;
     }
     const prodId = parseInt(selectedProduction, 10);
     // Vérification production = commerce + stockage + echanges
     const totalParts = (Number(commerce) || 0) + (Number(stockage) || 0) + (Number(echanges) || 0);
     if (productionValue !== '' && Number(productionValue) !== totalParts) {
-      setMessage('يرجى التحقق: يجب أن يكون الإنتاج = التسويق + التخزين + المبدلات');
+      setMessage('Veuillez vérifier : la production doit être égale à la commercialisation + stockage + échanges');
       return;
     }
     let body = {
@@ -122,7 +122,7 @@ export default function RapportJournalierSection() {
       body.type_marboota = null;
     } else if (prodId === 2) {
       if (!typeMarboota) {
-        setMessage("يرجى اختيار نوع الربط");
+        setMessage("Veuillez sélectionner le type de liaison");
         return;
       }
       body.surface = null;
@@ -136,10 +136,10 @@ export default function RapportJournalierSection() {
         body: JSON.stringify(body)
       });
       if (!res.ok) {
-        setMessage('خطأ في حفظ التقرير');
+        setMessage('Erreur lors de l\'enregistrement du rapport');
         return;
       }
-      setMessage('تم حفظ التقرير بنجاح');
+      setMessage('Rapport enregistré avec succès');
       setSelectedParcelle(null);
       setSelectedAffectation('');
       setSelectedProduction('');
@@ -150,7 +150,7 @@ export default function RapportJournalierSection() {
       setStockage('');
       setCommerce('');
     } catch {
-      setMessage('خطأ في الاتصال بالخادم');
+      setMessage('Erreur de connexion au serveur');
     }
   };
 
@@ -163,10 +163,10 @@ export default function RapportJournalierSection() {
 
   return (
     <div className="agent-container">
-      <h2>إضافة تقرير يومي</h2>
+      <h2>Saisie du rapport journalier</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>تاريخ التقرير</label>
+          <label>Date du rapport</label>
           <input
             type="date"
             className="login__input"
@@ -176,11 +176,11 @@ export default function RapportJournalierSection() {
           />
         </div>
         <div className="form-group">
-          <label>الموسم الفلاحي الحالي</label>
+          <label>Campagne agricole active</label>
           <input className="login__input" value={campagne?.libelle || ''} disabled />
         </div>
         <div className="form-group">
-          <label>اختر القطعة</label>
+          <label>Sélectionner la parcelle</label>
           <select
             className="login__input"
             value={selectedParcelle ? selectedParcelle.id : ''}
@@ -191,7 +191,7 @@ export default function RapportJournalierSection() {
             }}
             required
           >
-            <option value="">اختر القطعة</option>
+            <option value="">Sélectionner la parcelle</option>
             {parcelles && parcelles.length > 0 ? (
               parcelles.map(p => (
                 <option key={p.id} value={p.id}>
@@ -199,12 +199,12 @@ export default function RapportJournalierSection() {
                 </option>
               ))
             ) : (
-              <option disabled>لا توجد قطع متاحة</option>
+              <option disabled>Aucune parcelle disponible</option>
             )}
           </select>
         </div>
         <div className="form-group">
-          <label>اختر الزراعة المسندة</label>
+          <label>Sélectionner la culture affectée</label>
           <select
             className="login__input"
             value={selectedAffectation}
@@ -212,7 +212,7 @@ export default function RapportJournalierSection() {
             required
             disabled={!selectedParcelle}
           >
-            <option value="">اختر الزراعة</option>
+            <option value="">Sélectionner la culture</option>
             {affectations
               .filter(a =>
                 selectedParcelle &&
@@ -228,14 +228,14 @@ export default function RapportJournalierSection() {
           </select>
         </div>
         <div className="form-group">
-          <label>اختر الإنتاج</label>
+          <label>Sélectionner la production</label>
           <select
             className="login__input"
             value={selectedProduction}
             onChange={e => setSelectedProduction(e.target.value)}
             required
           >
-            <option value="">اختر الإنتاج</option>
+            <option value="">Sélectionner la production</option>
             {productions.map(p => (
               <option key={p.id} value={p.id}>{p.libelle}</option>
             ))}
@@ -243,7 +243,7 @@ export default function RapportJournalierSection() {
         </div>
         {selectedProduction === '1' && (
           <div className="form-group">
-            <label>المساحة المحصودة</label>
+            <label>Surface récoltée</label>
             <input
               type="number"
               className="login__input"
@@ -258,7 +258,7 @@ export default function RapportJournalierSection() {
         {selectedProduction === '2' && (
           <>
           <div className="form-group">
-            <label>المساحة المربوطة</label>
+            <label>Surface liée</label>
             <input
               type="number"
               className="login__input"
@@ -270,22 +270,22 @@ export default function RapportJournalierSection() {
             />
           </div>
           <div className="form-group">
-            <label>نوع الربط</label>
+            <label>Type de liaison</label>
             <select
               className="login__input"
               value={typeMarboota}
               onChange={e => setTypeMarboota(e.target.value)}
               required
             >
-              <option value="">اختر نوع الربط</option>
-              <option value="ربط1">ربط1</option>
-              <option value="ربط2">ربط2</option>
+              <option value="">Sélectionner le type de liaison</option>
+              <option value="liaison1">Liaison 1</option>
+              <option value="liaison2">Liaison 2</option>
             </select>
           </div>
           </>
         )}
         <div className="form-group">
-          <label>المبدلات</label>
+          <label>Échanges</label>
           <input
             type="number"
             className="login__input"
@@ -296,7 +296,7 @@ export default function RapportJournalierSection() {
           />
         </div>
         <div className="form-group">
-          <label>التخزين</label>
+          <label>Stockage</label>
           <input
             type="number"
             className="login__input"
@@ -307,7 +307,7 @@ export default function RapportJournalierSection() {
           />
         </div>
         <div className="form-group">
-          <label>التسويق</label>
+          <label>Commercialisation</label>
           <input
             type="number"
             className="login__input"
@@ -318,7 +318,7 @@ export default function RapportJournalierSection() {
           />
         </div>
         <div className="form-group">
-          <label>الإنتاج (الكمية)</label>
+          <label>Production (quantité)</label>
           <input
             type="number"
             className="login__input"
@@ -330,7 +330,7 @@ export default function RapportJournalierSection() {
           />
         </div>
         <div className="modal-actions">
-          <button type="submit" className="add-btn">حفظ التقرير</button>
+          <button type="submit" className="add-btn">Enregistrer le rapport</button>
         </div>
         {message && <div className="affectation-result">{message}</div>}
       </form>

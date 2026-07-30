@@ -14,29 +14,29 @@ export default function ParcelleSection({
 }) {
   return (
     <div className="users-container">
-      <h2>قائمة الضيعة او القطع</h2>
-      <button className="add-btn" onClick={openAddParcelleModal}>➕ إضافة ضيعة أو قطعة</button>
+      <h2>Liste des parcelles</h2>
+      <button className="add-btn" onClick={openAddParcelleModal}>➕ Ajouter une parcelle</button>
       {showAddParcelleModal && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h3>إضافة ضيعة أو قطعة جديدة</h3>
+            <h3>Nouvelle parcelle</h3>
             <form onSubmit={submitAddParcelle}>
               <div className="form-group">
-                <label>المركب الفلاحي</label>
+                <label>Exploitation</label>
                 <select
                   className="login__input"
                   value={newParcelle.COD_SOC}
                   onChange={e => setNewParcelle({ ...newParcelle, COD_SOC: e.target.value })}
                   required
                 >
-                  <option value="" disabled>اختر المركب</option>
+                  <option value="" disabled>Sélectionner l'exploitation</option>
                   {agroCombinats.map(agro => (
                     <option key={agro.COD_SOC} value={agro.COD_SOC}>{agro.LIB_SOC}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label>اسم القطعة</label>
+                <label>Nom de la parcelle</label>
                 <input
                   type="text"
                   className="login__input"
@@ -46,7 +46,7 @@ export default function ParcelleSection({
                 />
               </div>
               <div className="form-group">
-                <label>المساحة</label>
+                <label>Surface</label>
                 <input
                   type="number"
                   className="login__input"
@@ -58,8 +58,8 @@ export default function ParcelleSection({
                 />
               </div>
               <div className="modal-actions">
-                <button type="submit" className="add-btn">تأكيد</button>
-                <button type="button" className="delete-btn" onClick={closeAddParcelleModal}>إلغاء</button>
+                <button type="submit" className="add-btn">Confirmer</button>
+                <button type="button" className="delete-btn" onClick={closeAddParcelleModal}>Annuler</button>
               </div>
             </form>
           </div>
@@ -68,13 +68,13 @@ export default function ParcelleSection({
       <table className="users-table" dir="rtl">
         <thead>
           <tr>
-            {/* <th>المركب الفلاحي</th> */}
-            <th>اسم المركب</th>
-            {/* <th>كود القطعة</th> */}
-            <th>اسم القطعة</th>
-            <th>المساحة</th>
-            <th>المساحة الجملية</th>
-            <th>الإجراءات</th>
+            {/* <th>Exploitation</th> */}
+            <th>Nom de l'exploitation</th>
+            {/* <th>Code parcelle</th> */}
+            <th>Nom de la parcelle</th>
+            <th>Surface</th>
+            <th>Surface totale</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -95,18 +95,18 @@ export default function ParcelleSection({
                 rows.push(
                   <tr key={parcelle.COD_SOC + '-' + parcelle.cod_par}>
                     {idx === 0 && (
-                      <td rowSpan={parcellesSoc.length} data-label="اسم المركب"><span className="card-label">اسم المركب:</span> <span className="card-value">{getLibSoc(parcelle.COD_SOC)}</span></td>
+                      <td rowSpan={parcellesSoc.length} data-label="Nom de l'exploitation"><span className="card-label">Nom de l'exploitation:</span> <span className="card-value">{getLibSoc(parcelle.COD_SOC)}</span></td>
                     )}
-                    <td data-label="اسم القطعة"><span className="card-label">اسم القطعة:</span> <span className="card-value">{parcelle.lib_par}</span></td>
-                    <td data-label="المساحة"><span className="card-label">المساحة:</span> <span className="card-value">{parcelle.surface}</span></td>
+                    <td data-label="Nom de la parcelle"><span className="card-label">Nom de la parcelle:</span> <span className="card-value">{parcelle.lib_par}</span></td>
+                    <td data-label="Surface"><span className="card-label">Surface:</span> <span className="card-value">{parcelle.surface}</span></td>
                     {idx === 0 && (
-                      <td rowSpan={parcellesSoc.length} data-label="المساحة الجملية" style={{fontWeight: 'bold', color: '#8c5e36'}}>
-                        <span className="card-label">المساحة الجملية:</span> <span className="card-value">{totalSurface}</span>
+                      <td rowSpan={parcellesSoc.length} data-label="Surface totale" style={{fontWeight: 'bold', color: '#8c5e36'}}>
+                        <span className="card-label">Surface totale:</span> <span className="card-value">{totalSurface}</span>
                       </td>
                     )}
-                    <td data-label="الإجراءات">
-                      <button className="edit-btn" onClick={() => openEditParcelleModal && openEditParcelleModal(parcelle)}>تعديل</button>
-                      <button className="delete-btn" onClick={() => deleteParcelle && deleteParcelle(parcelle.COD_SOC, parcelle.cod_par)}>حذف</button>
+                    <td data-label="Actions">
+                      <button className="edit-btn" onClick={() => openEditParcelleModal && openEditParcelleModal(parcelle)}>Modifier</button>
+                      <button className="delete-btn" onClick={() => deleteParcelle && deleteParcelle(parcelle.COD_SOC, parcelle.cod_par)}>Supprimer</button>
                     </td>
                   </tr>
                 );
