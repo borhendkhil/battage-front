@@ -67,11 +67,11 @@ export default function AcceuilAdmin() {
   }, []);
 
   const adminStats = [
-    { label: 'Utilisateurs', value: utilisateurs.length },
-    { label: 'Exploitations', value: agroCombinats.length },
-    { label: 'Parcelles', value: parcelles.length },
-    { label: 'Catégories', value: categories.length },
-    { label: 'Types', value: types.length }
+    { label: 'Utilisateurs', value: utilisateurs.length, icon: '👥' },
+    { label: 'Exploitations', value: agroCombinats.length, icon: '🏭' },
+    { label: 'Parcelles', value: parcelles.length, icon: '🌾' },
+    { label: 'Catégories', value: categories.length, icon: '📂' },
+    { label: 'Types', value: types.length, icon: '🏷️' }
   ];
 
   // Ajoutez ce useEffect pour recharger la liste à chaque sélection de la section "users"
@@ -371,6 +371,7 @@ export default function AcceuilAdmin() {
           <div className="dashboard-cards">
             {adminStats.map((item) => (
               <div key={item.label} className="stat-card">
+                <div className="stat-icon">{item.icon}</div>
                 <span>{item.label}</span>
                 <strong>{item.value}</strong>
               </div>

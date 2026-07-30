@@ -12,9 +12,9 @@
 }
 
 .navbar {
+  font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, var(--navbar-bg-start), var(--navbar-bg-end));
   color: var(--navbar-text);
-  font-family: 'Inter', sans-serif;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 18px;

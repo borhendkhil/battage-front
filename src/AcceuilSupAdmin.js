@@ -90,18 +90,22 @@ export default function AcceuilSupAdmin() {
         <div className="dashboard-panel">
           <div className="dashboard-cards">
             <div className="stat-card">
+              <div className="stat-icon">👥</div>
               <span>Total Utilisateurs</span>
               <strong>{utilisateurs.length}</strong>
             </div>
             <div className="stat-card">
-              <span>Nombre d'Administrateurs</span>
+              <div className="stat-icon">👤</div>
+              <span>Administrateurs</span>
               <strong>{totalAdmins}</strong>
             </div>
             <div className="stat-card">
+              <div className="stat-icon">⭐</div>
               <span>Super-Administrateurs</span>
               <strong>{totalSuperAdmins}</strong>
             </div>
             <div className="stat-card">
+              <div className="stat-icon">📝</div>
               <span>Agents de Saisie</span>
               <strong>{totalAgents}</strong>
             </div>

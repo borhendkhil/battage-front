@@ -3,7 +3,7 @@
    Palette dérivée : blé clair #FFEB97 → terre #5B3714
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --wheat-light: #ffeb97;
@@ -21,8 +21,8 @@
   --radius-md: 1.125rem;
   --radius-pill: 999px;
 
-  --font-display: 'Amiri', 'Traditional Arabic', serif;
-  --font-body: 'Tajawal', 'Segoe UI', sans-serif;
+  --font-display: 'Inter', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
 }
 
 * {
@@ -66,7 +66,7 @@ body {
 
 .background_wrapper {
   position: relative;
-  direction: rtl;
+  direction: ltr;
 }
 
 .background_wrapper::before {
@@ -158,31 +158,53 @@ nav.navbar {
 
 .dashboard-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 1rem;
 }
 
 .stat-card {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: 1.4rem 1.5rem;
+  gap: 0.4rem;
+  padding: 1.5rem 1.5rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 247, 230, 0.94);
-  border: 1px solid rgba(255, 235, 151, 0.4);
-  box-shadow: 0 14px 30px rgba(44, 24, 16, 0.25);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: linear-gradient(135deg, rgba(255, 247, 230, 0.95), rgba(255, 247, 230, 0.85));
+  border: 1px solid rgba(255, 235, 151, 0.35);
+  box-shadow: 0 8px 32px rgba(44, 24, 16, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--wheat-light), var(--amber), var(--bronze));
+  opacity: 0.6;
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 38px rgba(44, 24, 16, 0.32);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(44, 24, 16, 0.18);
+  border-color: rgba(255, 235, 151, 0.6);
+}
+
+.stat-card .stat-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-bottom: 0.2rem;
 }
 
 .stat-card span {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--ink-soft);
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .stat-card strong {
@@ -190,6 +212,7 @@ nav.navbar {
   font-size: 2rem;
   color: var(--soil);
   font-weight: 700;
+  line-height: 1.1;
 }
 
 /* --- Modals --- */
@@ -351,7 +374,7 @@ table {
 }
 
 table th {
-  text-align: right;
+  text-align: left;
   padding: 0.85rem 1rem;
   color: var(--ink-soft);
   font-weight: 700;

@@ -57,15 +57,18 @@ export default function AcceuilAgent() {
         <div className="dashboard-panel" style={{ padding: '24px 20px 8px' }}>
           <div className="dashboard-cards">
             <div className="stat-card">
-              <span>Nombre de Rapports Journaliers</span>
+              <div className="stat-icon">📊</div>
+              <span>Rapports Journaliers</span>
               <strong>{rapportCount}</strong>
             </div>
             <div className="stat-card">
+              <div className="stat-icon">📍</div>
               <span>Section Active</span>
               <strong>{sectionLabel}</strong>
             </div>
             <div className="stat-card">
-              <span>Dernière Mise à Jour</span>
+              <div className="stat-icon">📅</div>
+              <span>Date</span>
               <strong>{todayLabel}</strong>
             </div>
           </div>
