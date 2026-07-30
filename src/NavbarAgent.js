@@ -34,23 +34,15 @@ export default function NavbarAgent({ onNav }) {
   return (
     <header className="navbar" dir="ltr" style={{marginBottom: 30}}>
       <div className="navbar-container" style={{justifyContent: 'center'}}>
-        <div className="navbar-brand">Domaine des Terres Internationales</div>
+        <div className="navbar-brand">DIAR</div>
         <button
-          className="navbar-toggle"
+          className={`navbar-toggle${mobileOpen ? ' active' : ''}`}
           aria-label="Ouvrir le menu"
           onClick={() => setMobileOpen(v => !v)}
-          style={{
-            display: 'none',
-            background: 'transparent',
-            border: 'none',
-            marginRight: 10,
-            fontSize: 28,
-            color: '#fff'
-          }}
         >
-          <span className="bar" style={{display: 'block', width: 24, height: 3, background: '#fff', margin: '4px 0', borderRadius: 2}}></span>
-          <span className="bar" style={{display: 'block', width: 24, height: 3, background: '#fff', margin: '4px 0', borderRadius: 2}}></span>
-          <span className="bar" style={{display: 'block', width: 24, height: 3, background: '#fff', margin: '4px 0', borderRadius: 2}}></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
         </button>
         <nav className={`navbar-menu${mobileOpen ? ' active' : ''}`} style={{gap: '1.2rem'}}>
           <a
@@ -81,9 +73,10 @@ export default function NavbarAgent({ onNav }) {
           >
             📋 Liste des rapports
           </a>
-          <span ref={userRef} style={{ position: 'relative', display: 'inline-block' }}>
+          <span ref={userRef} className={userDropdown ? 'open' : ''} style={{ position: 'relative', display: 'inline-block' }}>
             <a
               href="#"
+              aria-expanded={userDropdown}
               onClick={e => {
                 e.preventDefault();
                 setUserDropdown(v => !v);
@@ -98,24 +91,15 @@ export default function NavbarAgent({ onNav }) {
             >
               {username} ▼
             </a>
-            {userDropdown && (
-              <div className="navbar-dropdown" style={{ minWidth: 120, left: 0, right: 'auto' }}>
-                <a
-                  href="#"
-                  style={{
-                    display: 'block',
-                    color: '#e53935',
-                    padding: '8px 16px',
-                    textDecoration: 'none',
-                    fontWeight: 600,
-                    textAlign: 'right'
-                  }}
-                  onClick={handleLogout}
-                >
-                  🚪 Déconnexion
-                </a>
-              </div>
-            )}
+            <div className={`navbar-dropdown${userDropdown ? ' visible' : ''}`} style={{ minWidth: 120, left: 0, right: 'auto' }}>
+              <a
+                href="#"
+                className="danger-link"
+                onClick={handleLogout}
+              >
+                🚪 Déconnexion
+              </a>
+            </div>
           </span>
         </nav>
       </div>

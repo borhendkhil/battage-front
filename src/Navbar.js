@@ -48,27 +48,33 @@ const Navbar = ({ handleNavClick }) => {
     <header className="navbar" dir="ltr">
       <div className="navbar-container">
         <div className="navbar-brand">DIAR</div>
-        <button className="navbar-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        <button
+          className={`navbar-toggle${menuOpen ? ' active' : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menu"
+        >
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
         </button>
         <nav className={`navbar-menu${menuOpen ? ' active' : ''}`}>
-          {/* Dropdown catégorie-culture séparé */}
-          <span ref={categorieRef} style={{ position: 'relative', display: 'inline-block' }}>
+          <span
+            ref={categorieRef}
+            className={categorieDropdown ? 'open' : ''}
+            style={{ position: 'relative', display: 'inline-block' }}
+          >
             <a
               href="#"
+              aria-expanded={categorieDropdown}
               onClick={e => {
                 e.preventDefault();
                 setCategorieDropdown(v => !v);
-                setAgroDropdown(false); 
+                setAgroDropdown(false);
               }}
-              style={{ cursor: 'pointer' }}
             >
               🗂️ Catégories Agricoles ▼
             </a>
-            {categorieDropdown && (
-              <div className="navbar-dropdown">
+            <div className={`navbar-dropdown${categorieDropdown ? ' visible' : ''}`}>
                 <a
                   href="#"
                   onClick={e => {
@@ -115,23 +121,25 @@ const Navbar = ({ handleNavClick }) => {
                   Campagne
                 </a>
               </div>
-            )}
           </span>
           {/* Dropdown Complexe Agricole */}
-          <span ref={agroRef} style={{ position: 'relative', display: 'inline-block' }}>
+          <span
+            ref={agroRef}
+            className={agroDropdown ? 'open' : ''}
+            style={{ position: 'relative', display: 'inline-block' }}
+          >
             <a
               href="#"
+              aria-expanded={agroDropdown}
               onClick={e => {
                 e.preventDefault();
                 setAgroDropdown(v => !v);
-                setCategorieDropdown(false); 
+                setCategorieDropdown(false);
               }}
-              style={{ cursor: 'pointer' }}
             >
               🏭 Complexe Agricole ▼
             </a>
-            {agroDropdown && (
-              <div className="navbar-dropdown" style={{ minWidth: 120 }}>
+            <div className={`navbar-dropdown${agroDropdown ? ' visible' : ''}`} style={{ minWidth: 120 }}>
                 <a
                   href="#"
                   onClick={e => {
@@ -151,43 +159,44 @@ const Navbar = ({ handleNavClick }) => {
                   Parcelles
                 </a>
               </div>
-            )}
           </span>
           {/* Dropdown Affectation */}
-          <span className="affectation-dropdown-trigger" style={{ position: 'relative', display: 'inline-block' }}>
+          <span
+            className={`affectation-dropdown-trigger${affectationDropdown ? ' open' : ''}`}
+            style={{ position: 'relative', display: 'inline-block' }}
+          >
             <a
               href="#"
+              aria-expanded={affectationDropdown}
               onClick={e => {
                 e.preventDefault();
                 setAffectationDropdown(v => !v);
                 setAgroDropdown(false);
                 setCategorieDropdown(false);
               }}
-              style={{ cursor: 'pointer' }}
             >
               Affectation ▼
             </a>
-            {affectationDropdown && (
-              <div className="navbar-dropdown">
-                <a
-                  href="#"
-                  onClick={e => handleMenuLinkClick('affectation-culture', e)}
-                >
-                  Affectation Cultures
-                </a>
-                <a
-                  href="#"
-                  onClick={e => handleMenuLinkClick('affectation-agent', e)}
-                >
-                  Affectation Agents
-                </a>
-              </div>
-            )}
-          </span>
-          {currentUser && (
-            <span ref={userRef} style={{ position: 'relative', display: 'inline-block' }}>
+            <div className={`navbar-dropdown${affectationDropdown ? ' visible' : ''}`}>
               <a
                 href="#"
+                onClick={e => handleMenuLinkClick('affectation-culture', e)}
+              >
+                Affectation Cultures
+              </a>
+              <a
+                href="#"
+                onClick={e => handleMenuLinkClick('affectation-agent', e)}
+              >
+                Affectation Agents
+              </a>
+            </div>
+          </span>
+          {currentUser && (
+            <span ref={userRef} className={userDropdown ? 'open' : ''} style={{ position: 'relative', display: 'inline-block' }}>
+              <a
+                href="#"
+                aria-expanded={userDropdown}
                 onClick={e => {
                   e.preventDefault();
                   setUserDropdown(v => !v);
@@ -195,24 +204,15 @@ const Navbar = ({ handleNavClick }) => {
               >
                {currentUser} ▼
               </a>
-              {userDropdown && (
-                <div className="navbar-dropdown" style={{ minWidth: 120 }}>
-                  <a
-                    href="#"
-                    style={{
-                      display: 'block',
-                      color: '#e53935',
-                      padding: '8px 16px',
-                      textDecoration: 'none',
-                      fontWeight: 600,
-                      textAlign: 'right'
-                    }}
-                    onClick={handleLogout}
-                  >
-                    🚪 Déconnexion
-                  </a>
-                </div>
-              )}
+              <div className={`navbar-dropdown${userDropdown ? ' visible' : ''}`} style={{ minWidth: 120 }}>
+                <a
+                  href="#"
+                  className="danger-link"
+                  onClick={handleLogout}
+                >
+                  🚪 Déconnexion
+                </a>
+              </div>
             </span>
           )}
         </nav>
