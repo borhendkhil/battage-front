@@ -170,6 +170,7 @@ span.open > .navbar-dropdown,
 .navbar-dropdown a:hover {
   background: #f5efe6;
   padding-left: 1.15rem;
+  color: #3a2f25;
 }
 
 .navbar-dropdown a.danger-link {
