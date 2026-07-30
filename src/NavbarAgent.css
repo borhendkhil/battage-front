@@ -94,6 +94,7 @@
 
 .navbar-menu a:active {
   transform: translateY(0);
+  color: var(--navbar-text);
 }
 
 .navbar-toggle {
