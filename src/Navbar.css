@@ -236,8 +236,8 @@
   }
 
   .navbar-dropdown a:hover {
-    background: rgba(255, 235, 151, 0.1);
-    color: #ffeb97;
+    background: rgba(255, 235, 151, 0.15);
+    color: #3a2313;
     padding-left: 0.85rem;
   }
 }
