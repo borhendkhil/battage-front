@@ -368,11 +368,17 @@ nav.navbar {
 }
 
 table {
-  width: 100%;
+  text-indent: 0;
+  border-color: inherit;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  margin-top: 15px;
+  border: 1px solid #5c3513;
+  background: linear-gradient(359deg, #ffeb97, #c9954c);
+  background: linear-gradient(359deg, var(--wheat-light), var(--amber));
+  box-shadow: 0 10px 20px #c9954c52;
+  border-radius: 10px;
+  direction: ltr;
 }
-
 table th {
   text-align: left;
   padding: 0.85rem 1rem;
