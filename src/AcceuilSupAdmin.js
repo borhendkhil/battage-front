@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API_URL } from "./config";
 import './App.css';
+import './AcceuilSupAdmin.css';
 import bg from './assets/bg-img.jpg';
 import UtilisateurSection from './UtilisateurSection';
 

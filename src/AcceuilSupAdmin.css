@@ -1,0 +1,119 @@
+/* ============================================================
+   Super Admin — Style harmonisé avec l'interface admin
+   ============================================================ */
+
+.superadmin-background {
+  min-height: 100vh;
+  position: relative;
+  direction: ltr;
+}
+
+.superadmin-page {
+  position: relative;
+  z-index: 1;
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.superadmin-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem 2.25rem;
+  margin-bottom: 2rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 247, 230, 0.97), rgba(255, 235, 151, 0.82));
+  border: 1px solid rgba(255, 235, 151, 0.45);
+  box-shadow: 0 14px 30px rgba(44, 24, 16, 0.2);
+}
+
+.superadmin-badge {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(91, 55, 20, 0.12);
+  color: var(--soil);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.superadmin-header h1 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--soil);
+}
+
+.superadmin-subtitle {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.superadmin-actions {
+  display: flex;
+  align-items: center;
+}
+
+.superadmin-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  padding: 1.2rem 1.25rem;
+  border-radius: 1.125rem;
+  background: rgba(255, 247, 230, 0.95);
+  border: 1px solid rgba(255, 235, 151, 0.4);
+  box-shadow: 0 10px 24px rgba(44, 24, 16, 0.16);
+}
+
+.summary-card span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.summary-card strong {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--soil);
+}
+
+.summary-card--primary {
+  background: linear-gradient(135deg, rgba(255, 235, 151, 0.95), rgba(201, 149, 76, 0.18));
+}
+
+.summary-card--secondary {
+  background: linear-gradient(135deg, rgba(255, 247, 230, 0.96), rgba(227, 190, 110, 0.2));
+}
+
+.summary-card--accent {
+  background: linear-gradient(135deg, rgba(255, 247, 230, 0.96), rgba(140, 94, 51, 0.16));
+}
+
+.superadmin-content {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .superadmin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.4rem 1.25rem;
+  }
+
+  .superadmin-page {
+    padding: 1rem 1rem 2rem;
+  }
+}
