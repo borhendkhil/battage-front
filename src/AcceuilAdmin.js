@@ -16,7 +16,7 @@ import AffectationCultureSection from './AffectationCultureSection';
 import AffectationAgentSection from './AffectationAgentSection';
 
 export default function AcceuilAdmin() {
-  const [selectedSection, setSelectedSection] = useState('users');
+  const [selectedSection, setSelectedSection] = useState('campagne');
   const [utilisateurs, setUtilisateurs] = useState([]);
   const [agroCombinats, setAgroCombinats] = useState([]);
   const [parcelles, setParcelles] = useState([]);
@@ -364,9 +364,8 @@ export default function AcceuilAdmin() {
       backgroundPosition: 'center',
       minHeight: '100vh'
     }}>
+      <Navbar handleNavClick={showSection} />
       <div className="contenu">
-        <Navbar handleNavClick={showSection} />
-
         <div className="dashboard-panel">
           <div className="dashboard-cards">
             {adminStats.map((item) => (

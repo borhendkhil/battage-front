@@ -109,7 +109,7 @@ export default function CampagneSection() {
           </div>
         </div>
       )}
-      <table className="users-table" dir="rtl">
+      <table className="users-table" dir="ltr">
         <thead>
           <tr>
             <th>Code campagne</th>

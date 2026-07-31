@@ -47,7 +47,7 @@ const Navbar = ({ handleNavClick }) => {
   return (
     <header className="navbar" dir="ltr">
       <div className="navbar-container">
-        <div className="navbar-brand">DIAR</div>
+        <div className="navbar-brand">Application battage</div>
         <button
           className={`navbar-toggle${menuOpen ? ' active' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}

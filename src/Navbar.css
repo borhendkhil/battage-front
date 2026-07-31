@@ -1,18 +1,19 @@
 .navbar {
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  background: linear-gradient(135deg, #8c5e36, #3a2f25);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
-  color: #ffeb97;
-  font-family: Inter, sans-serif;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  margin: 0;
-  display: block;
-  float: none;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: linear-gradient(135deg, #8c5e36, #3a2f25);
+    background: linear-gradient(135deg, var(--navbar-bg-start), var(--navbar-bg-end));
+    box-shadow: 0 4px 30px #00000026;
+    color: var(--navbar-text);
+    font-family: Inter, sans-serif;
+    position: fixed;
+    top: 0;
+    transition: box-shadow .3s ease;
+    width: 100%;
+    z-index: 1000;
+    margin: 0 auto;
+    display: block;
+    float: none;
 }
 
 .navbar-container {
