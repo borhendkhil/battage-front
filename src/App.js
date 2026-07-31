@@ -160,11 +160,6 @@ function Login() {
                 Se connecter
               </button>
 
-              <div className="login-links">
-                <span>Créer un compte</span>
-                <span>Mot de passe oublié ?</span>
-              </div>
-
               {error && <div className="login-error">{error}</div>}
             </form>
           </div>
