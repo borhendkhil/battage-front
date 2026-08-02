@@ -149,22 +149,23 @@ const Navbar = ({ handleNavClick, activeSection }) => {
 
         <div className="sidebar-footer">
           {currentUser && (
-            <div className="sidebar-user">
-              <span className="sidebar-user-avatar">{currentUser.charAt(0).toUpperCase()}</span>
-              <div className="sidebar-user-info">
-                <strong>{currentUser}</strong>
-                <small>Connecté</small>
+            <>
+              <div className="sidebar-user">
+                <span className="sidebar-user-avatar">{currentUser.charAt(0).toUpperCase()}</span>
+                <div className="sidebar-user-info">
+                  <strong>{currentUser}</strong>
+                  <small>Connecté</small>
+                </div>
               </div>
               <button
                 type="button"
                 className="sidebar-logout"
                 onClick={handleLogout}
-                title="Déconnexion"
-                aria-label="Déconnexion"
               >
-                🚪
+                <span className="sidebar-logout-icon">🚪</span>
+                <span className="sidebar-logout-label">Se déconnecter</span>
               </button>
-            </div>
+            </>
           )}
         </div>
       </aside>
