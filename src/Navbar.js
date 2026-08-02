@@ -58,6 +58,13 @@ const Navbar = ({ handleNavClick }) => {
           <span className="bar"></span>
         </button>
         <nav className={`navbar-menu${menuOpen ? ' active' : ''}`}>
+          <a
+            href="#"
+            className="navbar-dashboard-link"
+            onClick={e => handleMenuLinkClick('dashboard', e)}
+          >
+            📊 Tableau de bord
+          </a>
           <span
             ref={categorieRef}
             className={categorieDropdown ? 'open' : ''}

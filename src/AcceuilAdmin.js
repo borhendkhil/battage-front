@@ -14,9 +14,10 @@ import ProductionSection from './ProductionSection';
 import CampagneSection from './CampagneSection';
 import AffectationCultureSection from './AffectationCultureSection';
 import AffectationAgentSection from './AffectationAgentSection';
+import DashboardAdmin from './DashboardAdmin';
 
 export default function AcceuilAdmin() {
-  const [selectedSection, setSelectedSection] = useState('campagne');
+  const [selectedSection, setSelectedSection] = useState('dashboard');
   const [utilisateurs, setUtilisateurs] = useState([]);
   const [agroCombinats, setAgroCombinats] = useState([]);
   const [parcelles, setParcelles] = useState([]);
@@ -378,6 +379,9 @@ export default function AcceuilAdmin() {
           </div>
         </div>
 
+        {selectedSection === 'dashboard' && (
+          <DashboardAdmin />
+        )}
         {selectedSection === 'users' && (
           <div className="bienvenue" >
             <span>Bienvenue dans le système de battage</span>

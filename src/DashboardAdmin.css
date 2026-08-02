@@ -1,0 +1,305 @@
+/* ============================================================
+   Tableau de bord admin — Moisson Design System
+   ============================================================ */
+
+.dash-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: dash-fade 0.4s ease;
+}
+
+@keyframes dash-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dash-loading,
+.dash-error {
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: var(--radius-lg, 1.75rem);
+  background: rgba(255, 247, 230, 0.94);
+  color: var(--ink-soft, #6f4a34);
+  font-weight: 500;
+  border: 1px solid rgba(255, 235, 151, 0.4);
+}
+
+.dash-error {
+  color: #7a1f1f;
+}
+
+/* --- Hero --- */
+.dash-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 2rem 2.25rem;
+  border-radius: var(--radius-lg, 1.75rem);
+  background: linear-gradient(135deg, rgba(255, 235, 151, 0.95), rgba(227, 190, 110, 0.9));
+  box-shadow: 0 20px 45px rgba(44, 24, 16, 0.28);
+  border: 1px solid rgba(255, 247, 230, 0.6);
+}
+
+.dash-hero-text h2 {
+  margin: 0.3rem 0 0;
+  font-size: 1.7rem;
+  color: var(--espresso, #2c1810);
+  font-weight: 800;
+}
+
+.dash-hero-text p {
+  margin: 0.4rem 0 0;
+  color: rgba(58, 35, 19, 0.8);
+  font-size: 0.95rem;
+}
+
+.dash-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bronze, #8c5e33);
+}
+
+.dash-hero-badge {
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--espresso, #2c1810);
+  color: var(--wheat-light, #ffeb97);
+  font-weight: 700;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 0 8px 18px rgba(44, 24, 16, 0.3);
+}
+
+/* --- Cartes total --- */
+.dash-totals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+
+.dash-total-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md, 1.125rem);
+  color: var(--cream, #fff7e6);
+  box-shadow: 0 14px 30px rgba(44, 24, 16, 0.22);
+  border: 1px solid rgba(255, 247, 230, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dash-total-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(44, 24, 16, 0.3);
+}
+
+.dash-total-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.dash-total-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.dash-total-meta span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+.dash-total-meta strong {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.dash-total-meta small {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* --- Grille de cartes --- */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dash-card {
+  padding: 1.6rem 1.75rem;
+  border-radius: var(--radius-lg, 1.75rem);
+  background: rgba(255, 247, 230, 0.94);
+  border: 1px solid rgba(255, 235, 151, 0.4);
+  box-shadow: 0 14px 30px rgba(44, 24, 16, 0.22);
+}
+
+.dash-card-full {
+  width: 100%;
+}
+
+.dash-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.dash-card-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--soil, #5b3714);
+  font-weight: 800;
+}
+
+.dash-card-unit {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--bronze, #8c5e33);
+  background: rgba(201, 149, 76, 0.12);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill, 999px);
+}
+
+.dash-empty {
+  color: var(--ink-soft, #6f4a34);
+  font-style: italic;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* --- Barres --- */
+.dash-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dash-bar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.dash-bar-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink, #3a2313);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dash-bar-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--bronze, #8c5e33);
+  white-space: nowrap;
+}
+
+.dash-bar {
+  height: 0.6rem;
+  border-radius: var(--radius-pill, 999px);
+  background: rgba(140, 94, 51, 0.12);
+  overflow: hidden;
+}
+
+.dash-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-pill, 999px);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Tableaux --- */
+.dash-table-wrap {
+  overflow-x: auto;
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.dash-table th {
+  text-align: left;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bronze, #8c5e33);
+  border-bottom: 2px solid rgba(140, 94, 51, 0.2);
+  white-space: nowrap;
+}
+
+.dash-table td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid rgba(140, 94, 51, 0.12);
+  color: var(--ink, #3a2313);
+  white-space: nowrap;
+}
+
+.dash-table tr:hover td {
+  background: rgba(255, 235, 151, 0.14);
+}
+
+.dash-cell-warn {
+  color: #7a1f1f;
+  font-weight: 700;
+}
+
+/* --- Pourcentage --- */
+.dash-pct {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 9rem;
+}
+
+.dash-pct span {
+  font-weight: 700;
+  color: var(--soil, #5b3714);
+  min-width: 2.4rem;
+}
+
+.dash-pct-bar {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: var(--radius-pill, 999px);
+  background: rgba(140, 94, 51, 0.12);
+  overflow: hidden;
+}
+
+.dash-pct-fill {
+  height: 100%;
+  border-radius: var(--radius-pill, 999px);
+  background: linear-gradient(90deg, var(--wheat-light, #ffeb97), var(--amber, #c9954c));
+}
