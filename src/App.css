@@ -205,6 +205,11 @@ body {
   color: var(--ink);
   margin-bottom: 0.55rem;
   letter-spacing: 0.01em;
+  transition: color 0.25s ease;
+}
+
+.login-field:focus-within label {
+  color: var(--soil);
 }
 
 .login-input-wrap {
@@ -214,16 +219,20 @@ body {
   border-radius: 0.85rem;
   border: 1.5px solid rgba(140, 94, 51, 0.28);
   background: #ffffff;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
 }
 
 .login-input-wrap:hover {
   border-color: rgba(140, 94, 51, 0.45);
+  background: #fffdf7;
 }
 
 .login-input-wrap:focus-within {
   border-color: var(--amber);
-  box-shadow: 0 0 0 4px rgba(201, 149, 76, 0.18), 0 8px 20px rgba(140, 94, 51, 0.12);
+  background: #ffffff;
+  box-shadow:
+    0 0 0 4px rgba(201, 149, 76, 0.18),
+    0 10px 24px rgba(140, 94, 51, 0.14);
   transform: translateY(-1px);
 }
 
@@ -232,7 +241,7 @@ body {
   border: none;
   outline: none;
   background: transparent;
-  padding: 0.85rem 3.1rem 0.85rem 1.05rem;
+  padding: 0.85rem 1.05rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
   color: var(--ink);
@@ -243,30 +252,14 @@ body {
   font-weight: 400;
 }
 
-.login-input-icon {
-  position: absolute;
-  right: 0.85rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.9rem;
-  height: 1.9rem;
-  border-radius: 0.6rem;
-  background: rgba(201, 149, 76, 0.12);
-  font-size: 0.9rem;
-  pointer-events: none;
-  color: var(--bronze);
-}
-
-.login-input-wrap:focus-within .login-input-icon {
-  background: rgba(201, 149, 76, 0.22);
+.login-input-wrap input[type="password"],
+.login-input-wrap input#password {
+  padding-right: 3rem;
 }
 
 .password-toggle {
   position: absolute;
-  right: 3rem;
+  right: 0.85rem;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -281,12 +274,16 @@ body {
   font-size: 0.95rem;
   color: var(--bronze);
   padding: 0;
-  transition: background 0.2s ease, opacity 0.2s ease;
+  transition: background 0.2s ease, opacity 0.2s ease, transform 0.25s ease;
 }
 
 .password-toggle:hover {
   background: rgba(201, 149, 76, 0.12);
   opacity: 0.9;
+}
+
+.login-input-wrap:focus-within .password-toggle {
+  color: var(--soil);
 }
 
 .login-submit {
@@ -315,8 +312,7 @@ body {
   transform: translateY(0);
 }
 
-.login-submit:focus-visible,
-.login-input-wrap input:focus-visible {
+.login-submit:focus-visible {
   outline: 2px solid var(--soil);
   outline-offset: 2px;
 }
@@ -649,6 +645,7 @@ body {
   color: var(--soil);
   margin: 0;
 }
+
 
 table {
   width: 100%;

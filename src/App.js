@@ -127,7 +127,6 @@ function Login() {
                     required
                     placeholder="Entrez votre nom d'utilisateur"
                   />
-                  <span className="login-input-icon">✉️</span>
                 </div>
               </div>
 
@@ -144,7 +143,6 @@ function Login() {
                     required
                     placeholder="Entrez votre mot de passe"
                   />
-                  <span className="login-input-icon">🔒</span>
                   <button
                     type="button"
                     className="password-toggle"
