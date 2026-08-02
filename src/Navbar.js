@@ -64,7 +64,9 @@ const Navbar = ({ handleNavClick, activeSection }) => {
         <span className="sidebar-group-caret">▾</span>
       </button>
       <div className="sidebar-submenu">
-        {children}
+        <div className="sidebar-submenu-inner">
+          {children}
+        </div>
       </div>
     </div>
   );
