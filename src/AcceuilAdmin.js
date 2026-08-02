@@ -365,7 +365,7 @@ export default function AcceuilAdmin() {
       backgroundPosition: 'center',
       minHeight: '100vh'
     }}>
-      <Navbar handleNavClick={showSection} />
+      <Navbar handleNavClick={showSection} activeSection={selectedSection} />
       <div className="contenu">
         <div className="dashboard-panel">
           <div className="dashboard-cards">

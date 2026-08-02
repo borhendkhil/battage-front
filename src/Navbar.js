@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 
-const Navbar = ({ handleNavClick }) => {
+const Navbar = ({ handleNavClick, activeSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
-  const [userDropdown, setUserDropdown] = useState(false);
-  const [agroDropdown, setAgroDropdown] = useState(false);
-  const [categorieDropdown, setCategorieDropdown] = useState(false);
-
-  const [affectationDropdown, setAffectationDropdown] = useState(false);
-  const userRef = useRef();
-  const agroRef = useRef();
-  const categorieRef = useRef();
+  const [openGroups, setOpenGroups] = useState({ agro: true, categorie: true, affectation: false });
+  const sidebarRef = useRef();
 
   useEffect(() => {
     const user = localStorage.getItem('username');
@@ -20,22 +14,24 @@ const Navbar = ({ handleNavClick }) => {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (userRef.current && !userRef.current.contains(e.target)) setUserDropdown(false);
-      if (agroRef.current && !agroRef.current.contains(e.target)) setAgroDropdown(false);
-      if (categorieRef.current && !categorieRef.current.contains(e.target)) setCategorieDropdown(false);
-      
-      if (!e.target.closest('.affectation-dropdown-trigger')) setAffectationDropdown(false);
+      if (menuOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
     };
-    if (userDropdown || agroDropdown || categorieDropdown || affectationDropdown) {
+    if (menuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [userDropdown, agroDropdown, categorieDropdown, affectationDropdown]);
+  }, [menuOpen]);
+
+  const toggleGroup = (key) => {
+    setOpenGroups(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const handleMenuLinkClick = (section, e) => {
+    e.preventDefault();
     handleNavClick(section, e);
     setMenuOpen(false);
-    setAffectationDropdown(false);
   };
 
   const handleLogout = (e) => {
@@ -44,187 +40,133 @@ const Navbar = ({ handleNavClick }) => {
     window.location.href = '/';
   };
 
-  return (
-    <header className="navbar" dir="ltr">
-      <div className="navbar-container">
-        <div className="navbar-brand">Application battage</div>
-        <button
-          className={`navbar-toggle${menuOpen ? ' active' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-        >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </button>
-        <nav className={`navbar-menu${menuOpen ? ' active' : ''}`}>
-          <a
-            href="#"
-            className="navbar-dashboard-link"
-            onClick={e => handleMenuLinkClick('dashboard', e)}
-          >
-            📊 Tableau de bord
-          </a>
-          <span
-            ref={categorieRef}
-            className={categorieDropdown ? 'open' : ''}
-            style={{ position: 'relative', display: 'inline-block' }}
-          >
-            <a
-              href="#"
-              aria-expanded={categorieDropdown}
-              onClick={e => {
-                e.preventDefault();
-                setCategorieDropdown(v => !v);
-                setAgroDropdown(false);
-              }}
-            >
-              🗂️ Catégories Agricoles ▼
-            </a>
-            <div className={`navbar-dropdown${categorieDropdown ? ' visible' : ''}`}>
-                <a
-                  href="#"
-                  onClick={e => {
-                    handleMenuLinkClick('categorie-culture', e);
-                    setCategorieDropdown(false);
-                  }}
-                >
-                  Filières
-                </a>
-                <a
-                  href="#"
-                  onClick={e => {
-                    handleMenuLinkClick('type-culture', e);
-                    setCategorieDropdown(false);
-                  }}
-                >
-                  Types
-                </a>
-                <a
-                  href="#"
-                  onClick={e => {
-                    handleMenuLinkClick('nature-culture', e);
-                    setCategorieDropdown(false);
-                  }}
-                >
-                  Nature
-                </a>
-                <a
-                  href="#"
-                  onClick={e => {
-                    handleMenuLinkClick('production', e);
-                    setCategorieDropdown(false);
-                  }}
-                >
-                  Production
-                </a>
-                <a
-                  href="#"
-                  onClick={e => {
-                    handleMenuLinkClick('campagne', e);
-                    setCategorieDropdown(false);
-                  }}
-                >
-                  Campagne
-                </a>
-              </div>
-          </span>
-          {/* Dropdown Complexe Agricole */}
-          <span
-            ref={agroRef}
-            className={agroDropdown ? 'open' : ''}
-            style={{ position: 'relative', display: 'inline-block' }}
-          >
-            <a
-              href="#"
-              aria-expanded={agroDropdown}
-              onClick={e => {
-                e.preventDefault();
-                setAgroDropdown(v => !v);
-                setCategorieDropdown(false);
-              }}
-            >
-              🏭 Complexe Agricole ▼
-            </a>
-            <div className={`navbar-dropdown${agroDropdown ? ' visible' : ''}`} style={{ minWidth: 120 }}>
-                <a
-                  href="#"
-                  onClick={e => {
-                    handleMenuLinkClick('agro', e);
-                    setAgroDropdown(false);
-                  }}
-                >
-                  Complexe Agricole
-                </a>
-                <a
-                  href="#"
-                  onClick={e => {
-                    handleMenuLinkClick('parcelle', e);
-                    setAgroDropdown(false);
-                  }}
-                >
-                  Parcelles
-                </a>
-              </div>
-          </span>
-          {/* Dropdown Affectation */}
-          <span
-            className={`affectation-dropdown-trigger${affectationDropdown ? ' open' : ''}`}
-            style={{ position: 'relative', display: 'inline-block' }}
-          >
-            <a
-              href="#"
-              aria-expanded={affectationDropdown}
-              onClick={e => {
-                e.preventDefault();
-                setAffectationDropdown(v => !v);
-                setAgroDropdown(false);
-                setCategorieDropdown(false);
-              }}
-            >
-              Affectation ▼
-            </a>
-            <div className={`navbar-dropdown${affectationDropdown ? ' visible' : ''}`}>
-              <a
-                href="#"
-                onClick={e => handleMenuLinkClick('affectation-culture', e)}
-              >
-                Affectation Cultures
-              </a>
-              <a
-                href="#"
-                onClick={e => handleMenuLinkClick('affectation-agent', e)}
-              >
-                Affectation Agents
-              </a>
-            </div>
-          </span>
-          {currentUser && (
-            <span ref={userRef} className={userDropdown ? 'open' : ''} style={{ position: 'relative', display: 'inline-block' }}>
-              <a
-                href="#"
-                aria-expanded={userDropdown}
-                onClick={e => {
-                  e.preventDefault();
-                  setUserDropdown(v => !v);
-                }}
-              >
-               {currentUser} ▼
-              </a>
-              <div className={`navbar-dropdown${userDropdown ? ' visible' : ''}`} style={{ minWidth: 120 }}>
-                <a
-                  href="#"
-                  className="danger-link"
-                  onClick={handleLogout}
-                >
-                  🚪 Déconnexion
-                </a>
-              </div>
-            </span>
-          )}
-        </nav>
+  const renderLink = (section, icon, label, cls = '') => (
+    <a
+      href="#"
+      className={`sidebar-link${activeSection === section ? ' active' : ''}${cls ? ' ' + cls : ''}`}
+      onClick={e => handleMenuLinkClick(section, e)}
+    >
+      <span className="sidebar-link-icon">{icon}</span>
+      <span className="sidebar-link-label">{label}</span>
+    </a>
+  );
+
+  const renderGroup = (key, icon, label, children, isOpen) => (
+    <div className={`sidebar-group${isOpen ? ' open' : ''}`}>
+      <button
+        type="button"
+        className="sidebar-group-btn"
+        onClick={() => toggleGroup(key)}
+        aria-expanded={isOpen}
+      >
+        <span className="sidebar-link-icon">{icon}</span>
+        <span className="sidebar-link-label">{label}</span>
+        <span className="sidebar-group-caret">▾</span>
+      </button>
+      <div className="sidebar-submenu">
+        {children}
       </div>
-    </header>
+    </div>
+  );
+
+  return (
+    <>
+      <button
+        className={`sidebar-hamburger${menuOpen ? ' hidden' : ''}`}
+        onClick={() => setMenuOpen(true)}
+        aria-label="Ouvrir le menu"
+      >
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </button>
+      <button
+        className={`sidebar-overlay${menuOpen ? ' visible' : ''}`}
+        onClick={() => setMenuOpen(false)}
+        aria-label="Fermer le menu"
+      />
+      <aside className={`sidebar${menuOpen ? ' open' : ''}`} ref={sidebarRef}>
+        <div className="sidebar-header">
+          <div className="sidebar-brand">
+            <span className="sidebar-brand-mark">🌾</span>
+            <div className="sidebar-brand-text">
+              <strong>Application battage</strong>
+              <small>Gestion agricole</small>
+            </div>
+          </div>
+          <button
+            className="sidebar-close"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Fermer"
+          >
+            ✕
+          </button>
+        </div>
+
+        <nav className="sidebar-nav">
+          {renderLink('dashboard', '📊', 'Tableau de bord')}
+
+          {renderGroup(
+            'agro',
+            '🏭',
+            'Complexe Agricole',
+            <>
+              {renderLink('agro', '🏢', 'Complexes')}
+              {renderLink('parcelle', '🌍', 'Parcelles')}
+            </>,
+            openGroups.agro
+          )}
+
+          {renderGroup(
+            'categorie',
+            '🗂️',
+            'Catégories Agricoles',
+            <>
+              {renderLink('categorie-culture', '🌱', 'Filières')}
+              {renderLink('type-culture', '🏷️', 'Types')}
+              {renderLink('nature-culture', '🍃', 'Nature')}
+              {renderLink('production', '📦', 'Production')}
+              {renderLink('campagne', '📅', 'Campagne')}
+            </>,
+            openGroups.categorie
+          )}
+
+          {renderGroup(
+            'affectation',
+            '📋',
+            'Affectation',
+            <>
+              {renderLink('affectation-culture', '🌾', 'Affectation Cultures')}
+              {renderLink('affectation-agent', '👷', 'Affectation Agents')}
+            </>,
+            openGroups.affectation
+          )}
+
+          {renderLink('users', '👥', 'Utilisateurs')}
+        </nav>
+
+        <div className="sidebar-footer">
+          {currentUser && (
+            <div className="sidebar-user">
+              <span className="sidebar-user-avatar">{currentUser.charAt(0).toUpperCase()}</span>
+              <div className="sidebar-user-info">
+                <strong>{currentUser}</strong>
+                <small>Connecté</small>
+              </div>
+              <button
+                type="button"
+                className="sidebar-logout"
+                onClick={handleLogout}
+                title="Déconnexion"
+                aria-label="Déconnexion"
+              >
+                🚪
+              </button>
+            </div>
+          )}
+        </div>
+      </aside>
+    </>
   );
 };
 
