@@ -71,6 +71,11 @@ export default function AcceuilSupAdmin() {
     refreshUsers();
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    window.location.href = '/';
+  };
+
   return (
     <div
       className="background_wrapper superadmin-background"
@@ -85,6 +90,7 @@ export default function AcceuilSupAdmin() {
           </div>
           <div className="superadmin-actions">
             <button className="add-btn" onClick={openAddUserModal}>➕ Nouvel utilisateur</button>
+            <button className="logout-btn" onClick={handleLogout}>🚪 Déconnexion</button>
           </div>
         </header>
 
